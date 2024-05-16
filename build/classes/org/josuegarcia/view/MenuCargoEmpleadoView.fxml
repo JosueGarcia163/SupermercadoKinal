@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josuegarcia.controller.MenuCargoEmpleadoController">
+   <children>
+      <ImageView fitHeight="468.0" fitWidth="379.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/MenuCargoEmpleado.png" />
+         </image></ImageView>
+      <ImageView fitHeight="468.0" fitWidth="345.0" layoutX="331.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/MenuCargoEmpleado2.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="34.0" layoutY="55.0" prefHeight="137.0" prefWidth="191.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="26.0" prefWidth="195.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" text="Agregar" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="26.0" prefWidth="207.0" style="-fx-background-color: #E66520;" styleClass="button2" stylesheets="@../resource/KinalExpressCSS.css" text="Eliminar" GridPane.rowIndex="1" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: #E6BD6C;" styleClass="button3" stylesheets="@../resource/KinalExpressCSS.css" text="Editar" GridPane.rowIndex="2" />
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reporte" prefHeight="26.0" prefWidth="198.0" style="-fx-background-color: #E8D82C;" styleClass="button4" stylesheets="@../resource/KinalExpressCSS.css" text="Reportes" GridPane.rowIndex="3" />
+            <ImageView fx:id="imgAgregar" fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Agregar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgEliminar" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/Eliminar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgEditar" fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/Editar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgReporte" fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../images/Reportes.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <TableView fx:id="tbCargoEmpleado" layoutX="34.0" layoutY="210.0" onMouseClicked="#seleccionarElemento" prefHeight="244.0" prefWidth="529.0" styleClass="menu-bar" stylesheets="@../resource/KinalExpressCSS.css">
+        <columns>
+          <TableColumn fx:id="colCodigoCargo" prefWidth="160.00002765655518" text="Codigo Cargo Empleado" />
+          <TableColumn fx:id="colNombreC" minWidth="5.60003662109375" prefWidth="188.00001525878906" text="Nombre de Cargo" />
+            <TableColumn fx:id="colDescripcionC" prefWidth="172.800048828125" text="Descripcion del Cargo   " />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="570.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/casa.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnRegresar" layoutX="537.0" layoutY="391.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="102.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <ImageView fitHeight="60.0" fitWidth="87.0" layoutX="575.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo%20Supermercado.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="354.0" layoutY="62.0" prefHeight="123.0" prefWidth="249.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.59996337890625" minWidth="10.0" prefWidth="117.59996337890625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="109.60003662109374" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="102.60001220703126" minHeight="10.0" prefHeight="45.20001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="92.79999999999998" minHeight="10.0" prefHeight="46.79998779296875" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="51.999981689453136" minHeight="10.0" prefHeight="34.2" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="18.0" prefWidth="129.0" text="codigoCargoEmpleado" />
+            <Label text="nombreCargo" GridPane.rowIndex="1" />
+            <Label text="descripcionCargo" GridPane.rowIndex="2" />
+            <TextField fx:id="txtCodigoC" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombreC" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDescripcionC" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
