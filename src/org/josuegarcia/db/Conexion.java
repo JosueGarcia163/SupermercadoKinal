@@ -19,9 +19,9 @@ public class Conexion {
             // declaramos el driver que tiene el jdbc
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             // creamos la instancia con los parametros de nuestra base de datos
-             conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBKinalExpress?useSSL=false", "2023324_IN5BV", "abc123!!");
+            // conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBKinalExpress?useSSL=false", "2023324_IN5BV", "abc123!!");
 
-           // conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBKinalExpress?useSSL=false", "root", "Admin");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBKinalExpress?useSSL=false", "root", "Admin");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
 

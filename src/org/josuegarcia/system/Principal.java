@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import org.josuegarcia.controller.MenuCargoEmpleadoController;
 import org.josuegarcia.controller.MenuClientesController;
 import org.josuegarcia.controller.MenuComprasController;
+import org.josuegarcia.controller.MenuProductosController;
 import org.josuegarcia.controller.MenuProgramadorController;
 import org.josuegarcia.controller.MenuProveedorController;
 import org.josuegarcia.controller.MenuTipoProductoController;
@@ -94,6 +95,7 @@ public class Principal extends Application {
         }
 
     }
+
     // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuProgramador.fxml"
     public void menuProveedoresView() {
         try {
@@ -104,6 +106,7 @@ public class Principal extends Application {
         }
 
     }
+
     // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuCargoEmpleadoView.fxml"
     public void MenuCargoEmpleadoView() {
         try {
@@ -113,9 +116,9 @@ public class Principal extends Application {
             e.printStackTrace();
         }
     }
-    
+
     // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuTipoProductoView.fxml"
-     public void MenuTipoProductoView() {
+    public void MenuTipoProductoView() {
         try {
             MenuTipoProductoController menuTipoProductoView = (MenuTipoProductoController) cambiarEscena("MenuTipoProductoView.fxml", 647, 478);
             menuTipoProductoView.setEscenarioPrincipal(this);
@@ -123,8 +126,9 @@ public class Principal extends Application {
             e.printStackTrace();
         }
     }
-      // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuComprasView.fxml"
-     public void MenuComprasView() {
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuComprasView.fxml"
+
+    public void MenuComprasView() {
         try {
             MenuComprasController menuComprasView = (MenuComprasController) cambiarEscena("MenuComprasView.fxml", 600, 400);
             menuComprasView.setEscenarioPrincipal(this);
@@ -132,8 +136,16 @@ public class Principal extends Application {
             e.printStackTrace();
         }
     }
-     
 
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuProductosView.fxml"
+    public void MenuProductosView() {
+        try {
+            MenuProductosController menuProductosView = (MenuProductosController) cambiarEscena("MenuProductosView.fxml", 566, 400);
+            menuProductosView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
