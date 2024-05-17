@@ -158,7 +158,6 @@ public class MenuProductosController implements Initializable {
                         resultado.getDouble("precioUnitario"),
                         resultado.getDouble("precioDocena"),
                         resultado.getDouble("precioMayor"),
-                        resultado.getString("imagenProducto"),
                         resultado.getInt("existencia"),
                         resultado.getInt("codigoTipoProducto"),
                         resultado.getInt("codigoProveedor")));
@@ -273,7 +272,7 @@ public class MenuProductosController implements Initializable {
             procedimiento.setInt(7, registro.getCodigoTipoProducto());
             procedimiento.setInt(8, registro.getCodigoProveedor());
             procedimiento.execute();
-            // agregamos a la listaTipoProducto el objeto registro que contiene los datos que agregamos.
+            // agregamos a la listaProducto el objeto registro que contiene los datos que agregamos.
             listaProductos.add(registro);
 
         } catch (Exception e) {
