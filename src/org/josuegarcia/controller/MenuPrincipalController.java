@@ -15,7 +15,7 @@ import org.josuegarcia.system.Principal;
 public class MenuPrincipalController implements Initializable {
 
     private Principal escenarioPrincipal;
-    
+
     @FXML
     private MenuItem btnMenuClientes;
 
@@ -24,18 +24,30 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     private MenuItem btnMenuProveedores;
-    
+
     @FXML
     private MenuItem btnMenuCargoEmpleado;
-    
+
     @FXML
     private MenuItem btnMenuTipoProducto;
-    
+
     @FXML
     private MenuItem btnMenuCompras;
-    
+
     @FXML
     private MenuItem btnProductos;
+
+    @FXML
+    private MenuItem btnEmailProveedor;
+
+    @FXML
+    private MenuItem btnTelefonoProveedor;
+
+    @FXML
+    private MenuItem btnEmpleados;
+    
+    @FXML
+    private MenuItem btnDetalleCompra;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,10 +76,16 @@ public class MenuPrincipalController implements Initializable {
             escenarioPrincipal.MenuCargoEmpleadoView();
         } else if (event.getSource() == btnMenuTipoProducto) {
             escenarioPrincipal.MenuTipoProductoView();
-        }else if (event.getSource() == btnMenuCompras) {
+        } else if (event.getSource() == btnMenuCompras) {
             escenarioPrincipal.MenuComprasView();
-        }else if (event.getSource() == btnProductos) {
+        } else if (event.getSource() == btnProductos) {
             escenarioPrincipal.MenuProductosView();
+        } else if (event.getSource() == btnEmailProveedor) {
+            escenarioPrincipal.MenuEmailProveedorView();
+        } else if (event.getSource() == btnEmpleados) {
+            escenarioPrincipal.MenuEmpleadoView();
+        }else if (event.getSource() == btnDetalleCompra) {
+            escenarioPrincipal.MenuDetalleCompraView();
         }
 
     }

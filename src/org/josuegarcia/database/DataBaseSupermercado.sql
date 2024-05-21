@@ -17,13 +17,13 @@ create table Clientes(
 );
 create table Proveedores(
 	codigoProveedor int not null,
-    NITproveedor varchar(10) not null,
-    nombreProveedor varchar(60),
-    apellidosProveedor varchar(60),
-    direccionProveedor varchar(150),
-    razonSocial varchar(60),
-    contactoPrincipal varchar(100),
-    paginaWeb varchar(50),
+	NITproveedor varchar(10) not null,
+	nombreProveedor varchar(60),
+	apellidosProveedor varchar(60),
+	direccionProveedor varchar(150),
+	razonSocial varchar(60),
+	contactoPrincipal varchar(100),
+	paginaWeb varchar(50),
     primary key PK_codigoProveedor(codigoProveedor)
 );
 
@@ -51,20 +51,20 @@ create table Compras(
 
 create table TelefonoProveedor(
 	codigoTelefonoProveedor int not null,
-    numeroPrincipal varchar(8),
-    numeroSecundario varchar(8),
-    observarciones varchar(45),
-    codigoProveedor int,
-    primary key PK_codigoTelefonoProveedor(codigoTelefonoProveedor),
-    constraint FK_TelefonoProveedor_Proveedores foreign key TelefonoProveedor(codigoProveedor)
+	numeroPrincipal varchar(8),
+	numeroSecundario varchar(8),
+	observarciones varchar(45),
+	codigoProveedor int,
+	primary key PK_codigoTelefonoProveedor(codigoTelefonoProveedor),
+	constraint FK_TelefonoProveedor_Proveedores foreign key TelefonoProveedor(codigoProveedor)
 		references Proveedores(codigoProveedor)
 );
  
 create table EmailProveedor(
 	codigoEmailProveedor int not null,
-    emailProveedor varchar(50),
-    descripcion varchar(100),
-    codigoProveedor int,
+	emailProveedor varchar(50),
+	descripcion varchar(100),
+	codigoProveedor int,
 	primary key PK_EmailProveedor(codigoEmailProveedor),
 	constraint FK_EmailProveedor_Proveedores foreign key EmailProveedor(codigoProveedor)
 		references Proveedores(codigoProveedor)
@@ -73,18 +73,18 @@ create table EmailProveedor(
  
 create table Productos(
 	codigoProducto varchar(15),
-    descripcionProducto varchar(45),
-    precioUnitario decimal(10,2),
-    precioDocena decimal(10,2),
-    precioMayor decimal(10,2),
-    imagenProducto varchar(45),
-    existencia int not null,
-    codigoTipoProducto int,
-    codigoProveedor int,
-    primary key PK_Productos(codigoProducto),
-    constraint FK_Productos_TipoProducto foreign key Productos(codigoTipoProducto)
+	descripcionProducto varchar(45),
+	precioUnitario decimal(10,2),
+	precioDocena decimal(10,2),
+	precioMayor decimal(10,2),
+	imagenProducto varchar(45),
+	existencia int not null,
+	codigoTipoProducto int,
+	codigoProveedor int,
+	primary key PK_Productos(codigoProducto),
+	constraint FK_Productos_TipoProducto foreign key Productos(codigoTipoProducto)
 		references TipoProducto(codigoTipoProducto),
-    constraint FK_Productos_Proveedores foreign key Productos(codigoProveedor)
+	constraint FK_Productos_Proveedores foreign key Productos(codigoProveedor)
 		references Proveedores(codigoProveedor)
 );
  
@@ -92,24 +92,24 @@ create table Productos(
 create table Empleados(
 	codigoEmpleado int not null,
 	nombresEmpleado varchar(50),
-    apellidosEmpleado varchar(50),
-    sueldo decimal(10,2),
-    direccion varchar(150),
-    turno varchar(15),
-    codigoCargoEmpleado int,
-    primary key PK_Empleados(codigoEmpleado),
-    constraint FK_Empleados_CargoEmpleado foreign key Empleados(codigoCargoEmpleado)
+	apellidosEmpleado varchar(50),
+	sueldo decimal(10,2),
+	direccion varchar(150),
+	turno varchar(15),
+	codigoCargoEmpleado int,
+	primary key PK_Empleados(codigoEmpleado),
+	constraint FK_Empleados_CargoEmpleado foreign key Empleados(codigoCargoEmpleado)
 		references CargoEmpleado(codigoCargoEmpleado)
 );
  
 create table DetalleCompra(
 	codigoDetalleCompra int not null,
 	costoUnitario decimal(10,2),
-    cantidad int not null,
-    codigoProducto varchar(15),
-    numeroDocumento int,
+	cantidad int not null,
+	codigoProducto varchar(15),
+	numeroDocumento int,
 	primary key PK_DetalleCompra(codigoDetalleCompra),
-    constraint FK_DetalleCompra_Productos foreign key DetalleCompra(codigoProducto)
+	constraint FK_DetalleCompra_Productos foreign key DetalleCompra(codigoProducto)
 		references Productos(codigoProducto),
 	constraint FK_DetalleCompra_Compras foreign key DetalleCompra(numeroDocumento)
 		references Compras(numeroDocumento)
@@ -117,15 +117,15 @@ create table DetalleCompra(
  
 create table Factura(
 	numeroFactura int not null,
-    estado varchar(50),
-    totalFactura decimal(10,2),
-    fechaFactura varchar(45),
-    codigoCliente int,
-    codigoEmpleado int,
-    primary key PK_Factura(numeroFactura),
-    constraint FK_Factura_Clientes foreign key Factura(codigoCliente)
+	estado varchar(50),
+	totalFactura decimal(10,2),
+	fechaFactura varchar(45),
+	codigoCliente int,
+	codigoEmpleado int,
+	primary key PK_Factura(numeroFactura),
+	constraint FK_Factura_Clientes foreign key Factura(codigoCliente)
 		references Clientes(codigoCliente),
-    constraint FK_Factura_Empleados foreign key Factura(codigoEmpleado)
+	constraint FK_Factura_Empleados foreign key Factura(codigoEmpleado)
 		references Empleados(codigoEmpleado)
 );
  
@@ -133,13 +133,13 @@ create table Factura(
 create table DetalleFactura(
 	codigoDetalleFactura int not null,
 	precioUnitario decimal(10,2),
-    cantidad int not null,
-    numeroFactura int,
-    codigoProducto varchar(15),
-    primary key PK_DetalleFactura(codigoDetalleFactura),
-    constraint FK_DetalleFactura_Factura foreign key DetalleFactura(numeroFactura)
+	cantidad int not null,
+	numeroFactura int,
+	codigoProducto varchar(15),
+	primary key PK_DetalleFactura(codigoDetalleFactura),
+	constraint FK_DetalleFactura_Factura foreign key DetalleFactura(numeroFactura)
 		references Factura(numeroFactura),
-    constraint FK_DetalleFactura_Productos foreign key DetalleFactura(codigoProducto)
+	constraint FK_DetalleFactura_Productos foreign key DetalleFactura(codigoProducto)
 		references Productos(codigoProducto)
 );
 
@@ -198,7 +198,7 @@ Delimiter $$
             where codigoCliente = codCli;
         end $$
 delimiter ; 
-call sp_EliminarClientes(1);
+-- call sp_EliminarClientes(1);
 call sp_ListarClientes();
  
 -- editar Clientes
@@ -279,7 +279,7 @@ call sp_BuscarProveedores(1);
             where codigoProveedor = codPro;
         end $$
 delimiter ; 
-call sp_EliminarProveedores(1);
+-- call sp_EliminarProveedores(1);
 call sp_ListarProveedores();
 
 -- editar Proveedores
@@ -355,7 +355,7 @@ call sp_BuscarCargoEmpleado(1);
             where codigoCargoEmpleado = codEmple;
         end $$
 delimiter ; 
-call sp_EliminarCargoEmpleado(1);
+-- call sp_EliminarCargoEmpleado(1);
 call sp_ListarCargoEmpleado();
 
 -- editar 
@@ -423,8 +423,8 @@ delimiter ;
             where codigoTipoProducto = codPro;
         end $$
 delimiter ; 
-call sp_EliminarTipoProducto(1);
-  call sp_ListarTipoProducto();
+-- call sp_EliminarTipoProducto(1);
+   call sp_ListarTipoProducto();
 
 -- editar 
 Delimiter $$
@@ -501,7 +501,7 @@ delimiter ;
             where numeroDocumento = codPro;
         end $$
 delimiter ; 
-call sp_EliminarCompras(1);
+-- call sp_EliminarCompras(1);
 call sp_ListarCompras();
 
 -- editar 
@@ -592,22 +592,22 @@ call sp_ListarTelefonoProveedor();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarTelefonoProveedor(in codigoTe int, in numeroP varchar(8), in numeroS varchar (8), in obser varchar(45))
+	create procedure sp_EditarTelefonoProveedor(in codigoTe int, in numeroP varchar(8), in numeroS varchar (8), in obser varchar(45), in codigoProve int)
 			begin 
 				update TelefonoProveedor T
 					set
 
 				T.numeroPrincipal = numeroP,
                 T.numeroSecundario = numeroS,
-                T.observarciones = obser
-
+                T.observarciones = obser,
+				T.codigoProveedor = codigoProve
 
 
 			where codigoTelefonoProveedor = codigoTe;
 			end $$
 delimiter ;                 
 
-call sp_EditarTelefonoProveedor(01,'69696969','79797979', 'Debe de cambiar de numero');
+call sp_EditarTelefonoProveedor(01,'69696969','79797979', 'Debe de cambiar de numero',1);
 call sp_ListarTelefonoProveedor();
 
 
@@ -675,22 +675,22 @@ call sp_ListarEmailProveedor();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarEmailProveedor(in codigoE int, in emailPro varchar(50), in descrip varchar (100))
+	create procedure sp_EditarEmailProveedor(in codigoE int, in emailPro varchar(50), in descrip varchar (100), in codigoProve int)
 			begin 
 				update EmailProveedor E
 					set
 
 
                 E.emailProveedor = emailPro,
-                E.descripcion = descrip
-
+                E.descripcion = descrip,
+				E.codigoProveedor = codigoProve
 
 
 			where codigoEmailProveedor = codigoE;
 			end $$
 delimiter ;                 
 
-call sp_EditarEmailProveedor(01,'Empresa69@gmail.com','Los mas exitosos del planeta');
+call sp_EditarEmailProveedor(01,'Empresa69@gmail.com','Los mas exitosos del planeta',1);
 call sp_ListarEmailProveedor();
 
 
@@ -769,7 +769,7 @@ call sp_ListarProductos();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarProductos(in codigoPro varchar(15), in descripcionPro varchar(45), in precioUn decimal(10,2), in precioDoc decimal(10,2), in precioM decimal(10,2),  in exis int)
+	create procedure sp_EditarProductos(in codigoPro varchar(15), in descripcionPro varchar(45), in precioUn decimal(10,2), in precioDoc decimal(10,2), in precioM decimal(10,2),  in exis int, in codigoTipoProducto int, in codigoProvee int)
 			begin 
 				update Productos P
 					set
@@ -779,7 +779,9 @@ Delimiter $$
 				P.precioUnitario = precioUn,
 				P.precioDocena = precioDoc,
 				P.precioMayor = precioM,
-				P.existencia = exis
+				P.existencia = exis,
+                P.codigoTipoProducto = codigoTipoProducto,
+                P.codigoProveedor = codigoProvee
 
 
 
@@ -788,7 +790,7 @@ Delimiter $$
 			end $$
 delimiter ;                 
 
-call sp_EditarProductos('E5','Bastante util',69.69, 102.84, 502.87, 2);
+call sp_EditarProductos('E5','Bastante util',69.69, 102.84, 502.87, 2, 1, 2);
 call sp_ListarProductos();
 
 
@@ -865,7 +867,7 @@ call sp_ListarEmpleados();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarEmpleados(in codigoE int, in nombresE varchar(50), in apellidosE varchar(50), in sd decimal(10,2), in dire varchar(150), in turn varchar(15))
+	create procedure sp_EditarEmpleados(in codigoE int, in nombresE varchar(50), in apellidosE varchar(50), in sd decimal(10,2), in dire varchar(150), in turn varchar(15), in codigoCargoEm int)
 			begin 
 				update Empleados E
 					set
@@ -873,14 +875,15 @@ Delimiter $$
 						E.apellidosEmpleado = apellidosE,
 						E.sueldo = sd,
 						E.direccion = dire,
-                        E.turno = turn
+                        E.turno = turn,
+                        E.codigoCargoEmpleado = codigoCargoEm
 
 
 			where codigoEmpleado = codigoE;
 			end $$
 delimiter ;                 
 
-call sp_EditarEmpleados(1,'Jose Mario', 'Gonzales Gutierrez' , 15.30, '4Calle Mixco', 'Tercer turno');
+call sp_EditarEmpleados(1,'Jose Mario', 'Gonzales Gutierrez' , 15.30, '4Calle Mixco', 'Tercer turno', 1);
 call sp_ListarEmpleados();
 
 
@@ -952,19 +955,21 @@ call sp_ListarDetalleCompra();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarDetalleCompra(in codigoD int, in costoU decimal(10,2), in cant int)
+	create procedure sp_EditarDetalleCompra(in codigoD int, in costoU decimal(10,2), in cant int, in codigoProduc varchar(15), in numeroDocu int)
 			begin 
 				update DetalleCompra D
 					set
 						D.costoUnitario = costoU,
-						D.cantidad = cant
+						D.cantidad = cant,
+                        D.codigoProducto = codigoProduc,
+                        D.numeroDocumento = numeroDocu
 
 
 			where codigoDetalleCompra = codigoD;
 			end $$
 delimiter ;                 
 
-call sp_EditarDetalleCompra(2, 102.85, 200);
+call sp_EditarDetalleCompra(2, 102.85, 200, 'E5', 1);
 call sp_ListarDetalleCompra();
 
 
@@ -1037,21 +1042,23 @@ call sp_ListarFactura();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarFactura(in numeroF int, in es varchar(50), in totalF decimal(10,2), in fechaF varchar(45))
+	create procedure sp_EditarFactura(in numeroF int, in es varchar(50), in totalF decimal(10,2), in fechaF varchar(45), in codigoCli int,  in codigoEmple int)
 			begin 
 				update Factura F
 					set
 
 						F.estado = es,
 						F.totalFactura = totalF,
-                        F.fechaFactura = fechaF
+                        F.fechaFactura = fechaF,
+                        F.codigoCliente = codigoCli,
+                        F.codigoEmpleado = codigoEmple
 
 
 			where numeroFactura = numeroF;
 			end $$
 delimiter ;                 
 
-call sp_EditarFactura(2,'Factura reciente', 800.50 , '12-6-2024');
+call sp_EditarFactura(2,'Factura reciente', 800.50 , '12-6-2024', 1, 1);
 call sp_ListarFactura();
 
 
@@ -1121,19 +1128,21 @@ call sp_ListarDetalleFactura();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarDetalleFactura(in codigoDetalleFac int, in precioUni decimal(10,2), in canti int)
+	create procedure sp_EditarDetalleFactura(in codigoDetalleFac int, in precioUni decimal(10,2), in canti int,  in numeroFac int, in codigoProduc varchar(15))
 			begin 
 				update DetalleFactura F
 					set
 
 						F.precioUnitario = precioUni,
-						F.cantidad = canti
+						F.cantidad = canti,
+                        F.numeroFactura = numeroFac,
+                        F.codigoProducto = codigoProduc
 
 
 			where codigoDetalleFactura = codigoDetalleFac;
 			end $$
 delimiter ;                 
 
-call sp_EditarDetalleFactura(2, 100.02, 30);
+call sp_EditarDetalleFactura(2, 100.02, 30, 1, 'E5');
 call sp_ListarDetalleFactura();
 

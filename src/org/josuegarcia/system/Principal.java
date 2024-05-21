@@ -1,5 +1,5 @@
 /* Documentacion Nombre completo: Josue David Garcia Mendez Codigo Tecnico:IN5BV
- * Fecha Creacion: 11/4/24 Fecha Modificaciones: 25/4/24
+ * Fecha Creacion: 11/4/24 Fecha Modificaciones: 20/5/24
  */
 package org.josuegarcia.system;
 
@@ -22,9 +22,13 @@ import javafx.scene.image.Image;
 import org.josuegarcia.controller.MenuCargoEmpleadoController;
 import org.josuegarcia.controller.MenuClientesController;
 import org.josuegarcia.controller.MenuComprasController;
+import org.josuegarcia.controller.MenuDetalleCompraController;
+import org.josuegarcia.controller.MenuEmailProveedorController;
+import org.josuegarcia.controller.MenuEmpleadosController;
 import org.josuegarcia.controller.MenuProductosController;
 import org.josuegarcia.controller.MenuProgramadorController;
 import org.josuegarcia.controller.MenuProveedorController;
+import org.josuegarcia.controller.MenuTelefonoProveedorController;
 import org.josuegarcia.controller.MenuTipoProductoController;
 
 public class Principal extends Application {
@@ -142,6 +146,46 @@ public class Principal extends Application {
         try {
             MenuProductosController menuProductosView = (MenuProductosController) cambiarEscena("MenuProductosView.fxml", 566, 400);
             menuProductosView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuEmailProveedorView.fxml"
+    public void MenuEmailProveedorView() {
+        try {
+            MenuEmailProveedorController menuEmailProveedorView = (MenuEmailProveedorController) cambiarEscena("MenuEmailProveedorView.fxml", 678, 502);
+            menuEmailProveedorView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuEmailProveedorView.fxml"
+    public void MenuTelefonoProveedorView() {
+        try {
+            MenuTelefonoProveedorController menuTelefonoProveedorView = (MenuTelefonoProveedorController) cambiarEscena("MenuTelefonoProveedorView.fxml", 642, 459);
+            menuTelefonoProveedorView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuEmpleadoView.fxml"
+    public void MenuEmpleadoView() {
+        try {
+            MenuEmpleadosController menuEmpleadoView = (MenuEmpleadosController) cambiarEscena("MenuEmpleadoView.fxml", 635, 490);
+            menuEmpleadoView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuDetalleCompraView.fxml"
+    public void MenuDetalleCompraView() {
+        try {
+            MenuDetalleCompraController menuDetalleCompraView = (MenuDetalleCompraController) cambiarEscena("MenuDetalleCompraView.fxml", 628, 466);
+            menuDetalleCompraView.setEscenarioPrincipal(this);
         } catch (Exception e) {
             e.printStackTrace();
         }

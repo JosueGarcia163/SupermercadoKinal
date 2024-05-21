@@ -13,13 +13,18 @@
             <Image url="@../images/casa.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="134.0" fitWidth="134.0" layoutX="62.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="139.0" fitWidth="150.0" layoutX="43.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/FotoPerfil.jpg" />
          </image>
       </ImageView>
-      <TextArea layoutX="34.0" layoutY="23.0" prefHeight="88.0" prefWidth="533.0" style="-fx-background-color: #E6BD6C;" styleClass="TextArea" stylesheets="@../resource/KinalExpressCSS.css" text="-nombre: Josue David Garcia Mendez&#10;-fecha nacimiento: 27 octubre 2006&#10;- IN5BV&#10;-Me gusta programar por que me gusta crear aplicaciones &#10;y contribuir con los servicios fundamentales de una empresa." />
-      <TextArea layoutX="342.0" layoutY="132.0" prefHeight="204.0" prefWidth="204.0" style="-fx-background-color: #E68920;" styleClass="TextArea" stylesheets="@../resource/KinalExpressCSS.css" text="Mis pasatiempos favoritos son &#10;programar, estudiar, ejercitarme&#10;jugar con mis compañeros y&#10;escuchar musica&#10;Me gusta realizar Proyectos &#10;sobre todo si son de programacion,&#10;matematicos o fisicos.&#10; &#10;&#10;" />
+      <TextArea layoutX="34.0" layoutY="23.0" prefHeight="99.0" prefWidth="534.0" style="-fx-background-color: #E6BD6C;" styleClass="TextArea" stylesheets="@../resource/KinalExpressCSS.css" text="-nombre: Josue David Garcia Mendez&#10;-fecha nacimiento: 27 octubre 2006&#10;- IN5BV&#10;-Me gusta programar por que me gusta crear aplicaciones &#10;y contribuir con los servicios fundamentales de una empresa." />
+      <TextArea layoutX="253.0" layoutY="166.0" prefHeight="166.0" prefWidth="295.0" style="-fx-background-color: #E68920;" styleClass="TextArea" stylesheets="@../resource/KinalExpressCSS.css" text="Mis pasatiempos favoritos son &#10;programar, estudiar, ejercitarme&#10;jugar con mis compañeros y&#10;escuchar musica&#10;Me gusta realizar Proyectos &#10;sobre todo si son de programacion,&#10;matematicos o fisicos.&#10; &#10;&#10;" />
       <Button fx:id="btnRegresar" layoutX="20.0" layoutY="296.0" mnemonicParsing="false" onAction="#ClickRegresar" prefHeight="81.0" prefWidth="117.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <ImageView fitHeight="55.0" fitWidth="62.0" layoutX="517.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo%20Supermercado.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

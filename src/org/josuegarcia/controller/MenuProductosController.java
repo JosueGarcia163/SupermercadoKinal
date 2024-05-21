@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javax.swing.JOptionPane;
 import org.josuegarcia.bean.Productos;
 import org.josuegarcia.bean.Proveedores;
 import org.josuegarcia.bean.TipoProducto;
@@ -26,8 +27,6 @@ import org.josuegarcia.system.Principal;
 
 public class MenuProductosController implements Initializable {
 
-    
-
     private enum operaciones {
         AGREGAR, ELIMINAR, EDITAR, CANCELAR, NINGUNO
     }
@@ -35,7 +34,7 @@ public class MenuProductosController implements Initializable {
     private ObservableList<Productos> listaProductos;
     private ObservableList<Proveedores> listaProveedores;
     private ObservableList<TipoProducto> listaTipoProducto;
-    
+
     private Principal escenarioPrincipal;
 
     @FXML
@@ -121,9 +120,11 @@ public class MenuProductosController implements Initializable {
         txtPrecioM.setText(String.valueOf(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getPrecioMayor()));
         txtExistencia.setText(String.valueOf(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getExistencia()));
         cmbCodigoTipoProducto.getSelectionModel().select(buscarTipoP(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
+        cmbCodigoProveedor.getSelectionModel().select(buscarTipoP(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getCodigoProveedor()));
 
     }
 
+    // Es para buscar el elemento de la llave foranea para mostrarla en la comboBox
     public TipoProducto buscarTipoP(int codigoTipoProducto) {
         TipoProducto resultado = null;
         try {
@@ -277,6 +278,153 @@ public class MenuProductosController implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
+
+        }
+
+    }
+
+    // metodo para eliminar una tupla
+    public void eliminar() {
+        switch (tipoDeOperaciones) {
+            case EDITAR:
+                activarControles();
+                LimpiarControles();
+                btnAgregar.setText("Agregar");
+                btnEliminar.setText("Eliminar");
+                btnEditar.setDisable(false);
+                btnReportes.setDisable(false);
+                // colocamos imagenes 
+                imgAgregar.setImage(new Image("/org/josuegarcia/images/Agregar.png"));
+                imgEliminar.setImage(new Image("/org/josuegarcia/images/Editar.png"));
+                tipoDeOperaciones = operaciones.NINGUNO;
+                break;
+            default:
+                // si el elemento seleccionado de la tabla es diferente a nulo mandara un JoptionPane que nos pregunte si queremos eliminar 
+                if (tbProducto.getSelectionModel().getSelectedItem() != null) {
+                    int respuesta = JOptionPane.showConfirmDialog(null, "Confirmar si elimina registro", "Eliminar productos", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                    // si la respuesta es no, no hara nada, pero si la respuesta es positiva removera la tupla que presiono el usuario
+                    if (respuesta == JOptionPane.YES_NO_OPTION) {
+                        try {
+                            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EliminarProductos(?)}");
+                            procedimiento.setString(1, ((Productos) tbProducto.getSelectionModel().getSelectedItem()).getCodigoProducto());
+
+                            procedimiento.execute();
+                            listaProductos.remove(tbProducto.getSelectionModel().getSelectedItem());
+                            // listaProveedores.remove(tbProducto.getSelectionModel().getSelectedItem());
+                            // listaTipoProducto.remove(tbProducto.getSelectionModel().getSelectedItem());
+                            LimpiarControles();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe de seleccionar un elemento");
+                }
+                break;
+        }
+
+    }
+
+    // creamos el metodo de editar
+    public void editar() {
+        switch (tipoDeOperaciones) {
+            case NINGUNO:
+                if (tbProducto.getSelectionModel().getSelectedItem() != null) {
+                    // Cambiamos el texto de los botones
+                    btnEditar.setText("Actualizar");
+                    btnReportes.setText("Cancelar");
+                    // disable solo acepta valores boolean
+                    btnAgregar.setDisable(true);
+                    btnEliminar.setDisable(true);
+                    // colocamos las imagenes
+                    imgEditar.setImage(new Image("/org/josuegarcia/images/Editar.png"));
+                    imgReporte.setImage(new Image("/org/josuegarcia/images/Cancelar.png"));
+                    activarControles();
+                    txtCodigoP.setEditable(false);
+                    tipoDeOperaciones = operaciones.EDITAR;
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe de seleccionar un elemento");
+                }
+
+                break;
+            case EDITAR:
+                actualizar();
+                // Colocamos el nombre predeterminado
+                btnEditar.setText("Editar");
+                btnReportes.setText("Reportes");
+                // disable solo acepta valores boolean
+                // activamos agregar y eliminar
+                btnAgregar.setDisable(false);
+                btnEliminar.setDisable(false);
+                // colocamos las imagenes
+                imgEditar.setImage(new Image("/org/josuegarcia/images/Agregar.png"));
+                imgReporte.setImage(new Image("/org/josuegarcia/images/Reportes.png"));
+                desactivarControles();
+                LimpiarControles();
+                tipoDeOperaciones = operaciones.NINGUNO;
+                CargarDatos();
+                break;
+
+            default:
+
+                break;
+        }
+    }
+
+    // hacemos actualizar 
+    public void actualizar() {
+        try {
+            // llamamos instancia
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarProductos(?, ?, ?, ?, ?, ?, ?, ?)}");
+            // registrara lo que presiono el usuario 
+            // almacenamos la informacion de la tabla en registro
+            Productos registro = (Productos) tbProducto.getSelectionModel().getSelectedItem();
+            // podremos editar unicamente los datos que no sean la Id, para no afectar nuestro orden en la db
+            registro.setDescripcionProducto(txtDescripcionP.getText());
+            registro.setPrecioUnitario(Double.parseDouble(txtPrecioUnitarioP.getText()));
+            registro.setPrecioDocena(Double.parseDouble(txtPrecioD.getText()));
+            registro.setPrecioMayor(Double.parseDouble(txtPrecioM.getText()));
+            registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
+            registro.setCodigoTipoProducto(((TipoProducto) cmbCodigoTipoProducto.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
+            registro.setCodigoProveedor(((Proveedores) cmbCodigoProveedor.getSelectionModel().getSelectedItem()).getCodigoProveedor());
+
+            // registramos los en procedimientos, los datos para actualizar la tabla 
+            procedimiento.setString(1, registro.getCodigoProducto());
+            procedimiento.setString(2, registro.getDescripcionProducto());
+            procedimiento.setDouble(3, registro.getPrecioUnitario());
+            procedimiento.setDouble(4, registro.getPrecioDocena());
+            procedimiento.setDouble(5, registro.getPrecioMayor());
+            procedimiento.setInt(6, registro.getExistencia());
+            procedimiento.setInt(7, registro.getCodigoTipoProducto());
+            procedimiento.setInt(8, registro.getCodigoProveedor());
+            procedimiento.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
+    //Este metodo reporte nos sirve para poder cancelar alguna actualizacion o el metodo Agregar
+    public void reporte() {
+        switch (tipoDeOperaciones) {
+            case EDITAR:
+                activarControles();
+                LimpiarControles();
+                btnEditar.setText("Editar");
+                btnReportes.setText("Reporte");
+                btnAgregar.setDisable(false);
+                btnEliminar.setDisable(false);
+                imgEditar.setImage(new Image("/org/josuegarcia/images/Editar.png"));
+                imgReporte.setImage(new Image("/org/josuegarcia/images/Reportes.png"));
+                tipoDeOperaciones = operaciones.NINGUNO;
+
+                break;
 
         }
 

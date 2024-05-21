@@ -24,12 +24,12 @@
             <Image url="@../images/MenuProveedores.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="46.0" fitWidth="58.0" layoutX="491.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="58.0" fitWidth="61.0" layoutX="507.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Logo%20Supermercado.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="22.0" layoutY="82.0" prefHeight="99.0" prefWidth="100.0">
+      <GridPane layoutX="22.0" layoutY="82.0" prefHeight="137.0" prefWidth="165.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -40,10 +40,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="21.0" prefWidth="99.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" text="Agregar" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #E66520;" styleClass="button2" stylesheets="@../resource/KinalExpressCSS.css" text="Eliminar" GridPane.rowIndex="1" />
-            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #E6BD6C;" styleClass="button3" stylesheets="@../resource/KinalExpressCSS.css" text="Editar" GridPane.rowIndex="2" />
-            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reporte" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: #E8D82C;" styleClass="button4" stylesheets="@../resource/KinalExpressCSS.css" text="Reportes" GridPane.rowIndex="3" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="26.0" prefWidth="169.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" text="Agregar" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: #E66520;" styleClass="button2" stylesheets="@../resource/KinalExpressCSS.css" text="Eliminar" GridPane.rowIndex="1" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #E6BD6C;" styleClass="button3" stylesheets="@../resource/KinalExpressCSS.css" text="Editar" GridPane.rowIndex="2" />
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reporte" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #E8D82C;" styleClass="button4" stylesheets="@../resource/KinalExpressCSS.css" text="Reportes" GridPane.rowIndex="3" />
             <ImageView fx:id="imgAgregar" fitHeight="21.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Agregar.png" />
@@ -66,7 +66,7 @@
             </ImageView>
          </children>
       </GridPane>
-      <GridPane layoutX="239.0" layoutY="37.0" prefHeight="118.0" prefWidth="214.0">
+      <GridPane layoutX="218.0" layoutY="39.0" prefHeight="118.0" prefWidth="334.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -93,7 +93,7 @@
             <Label text="razonPro" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <GridPane layoutX="284.0" layoutY="158.0" prefHeight="46.0" prefWidth="151.0">
+      <GridPane layoutX="216.0" layoutY="158.0" prefHeight="58.0" prefWidth="334.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -104,12 +104,12 @@
         </rowConstraints>
          <children>
             <TextField fx:id="txtContactoP" GridPane.columnIndex="1" />
-            <TextField fx:id="txtPaginaP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtPaginaP" prefHeight="43.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="72.0" text="contactoPro" />
             <Label prefHeight="17.0" prefWidth="76.0" text="paginaPro" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <TableView fx:id="tbProveedor" layoutX="2.0" layoutY="239.0" onMouseClicked="#seleccionarElemento" prefHeight="184.0" prefWidth="563.0" styleClass="menu-bar" stylesheets="@../resource/KinalExpressCSS.css">
+      <TableView fx:id="tbProveedor" layoutX="2.0" layoutY="239.0" onMouseClicked="#seleccionarElemento" prefHeight="194.0" prefWidth="563.0" styleClass="menu-bar" stylesheets="@../resource/KinalExpressCSS.css">
         <columns>
           <TableColumn fx:id="colCodigoP" prefWidth="39.20004081726074" text="codigoProveedor" />
           <TableColumn fx:id="colNitP" minWidth="0.0" prefWidth="59.99993896484375" text="NITproveedor" />
@@ -118,14 +118,14 @@
             <TableColumn fx:id="colDireccionP" prefWidth="76.0" text="direccionProveedor" />
             <TableColumn fx:id="colRazonP" prefWidth="67.99993896484375" text="razonSocial" />
             <TableColumn fx:id="colContactoP" prefWidth="72.0" text="contactoPrincipal" />
-            <TableColumn fx:id="colPaginaP" prefWidth="96.80001831054688" text="paginaWeb" />
+            <TableColumn fx:id="colPaginaP" prefWidth="88.00001831054692" text="paginaWeb" />
         </columns>
       </TableView>
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="499.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="496.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/casa.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRegresar" layoutX="449.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="58.0" prefWidth="100.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <Button fx:id="btnRegresar" layoutX="473.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="46.0" prefWidth="76.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
    </children>
 </AnchorPane>

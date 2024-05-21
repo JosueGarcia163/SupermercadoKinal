@@ -1,3 +1,7 @@
+/* Documentacion Nombre completo: Josue David Garcia Mendez Codigo Tecnico:IN5BV
+ * Fecha Creacion: 11/4/24 Fecha Modificaciones: 19/5/24
+ */
+
 package org.josuegarcia.bean;
 
 public class Productos {
@@ -11,9 +15,11 @@ public class Productos {
     private int codigoTipoProducto;
     private int codigoProveedor;
 
+    // constructor vacio
     public Productos() {
     }
 
+    // constructor lleno
     public Productos(String codigoProducto, String descripcionProducto, double precioUnitario, double precioDocena, double precioMayor, int existencia, int codigoTipoProducto, int codigoProveedor) {
         this.codigoProducto = codigoProducto;
         this.descripcionProducto = descripcionProducto;
@@ -27,6 +33,7 @@ public class Productos {
 
     
 
+    // metodos setters and getters 
     public String getCodigoProducto() {
         return codigoProducto;
     }
@@ -90,5 +97,12 @@ public class Productos {
     public void setCodigoProveedor(int codigoProveedor) {
         this.codigoProveedor = codigoProveedor;
     }
+
+    @Override
+    public String toString() {
+        return "" + getCodigoProducto();
+    }
+    
+    
 
 }

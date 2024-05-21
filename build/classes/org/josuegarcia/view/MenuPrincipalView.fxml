@@ -21,10 +21,13 @@
               <MenuItem fx:id="btnProductos" mnemonicParsing="false" onAction="#buttonHandleEvent" text="Productos" />
                   <MenuItem fx:id="btnMenuProveedores" mnemonicParsing="false" onAction="#buttonHandleEvent" text="Proveedores" />
                   <MenuItem fx:id="btnMenuClientes" mnemonicParsing="false" onAction="#buttonHandleEvent" text="Clientes" />
-                  <MenuItem mnemonicParsing="false" text="Empleados" />
+                  <MenuItem fx:id="btnTelefonoProveedor" mnemonicParsing="false" onAction="#buttonHandleEvent" text="TelefonoProveedor" />
                   <MenuItem fx:id="btnMenuCargoEmpleado" mnemonicParsing="false" onAction="#buttonHandleEvent" text="CargoEmpleado" />
                   <MenuItem fx:id="btnMenuTipoProducto" mnemonicParsing="false" onAction="#buttonHandleEvent" text="Tipo de productos" />
                   <MenuItem fx:id="btnMenuCompras" mnemonicParsing="false" onAction="#buttonHandleEvent" text="Compras" />
+                  <MenuItem fx:id="btnEmailProveedor" mnemonicParsing="false" onAction="#buttonHandleEvent" text="EmailProveedor" />
+                  <MenuItem fx:id="btnEmpleados" mnemonicParsing="false" onAction="#buttonHandleEvent" text="Empleados" />
+                  <MenuItem fx:id="btnDetalleCompra" mnemonicParsing="false" onAction="#buttonHandleEvent" text="Detalle de compra" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Reportes">
