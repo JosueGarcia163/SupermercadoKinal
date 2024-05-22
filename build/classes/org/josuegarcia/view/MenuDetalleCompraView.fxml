@@ -117,5 +117,12 @@
          </image>
       </ImageView>
       <Button fx:id="btnRegresar" layoutX="545.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="42.0" prefWidth="78.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <ImageView fitHeight="89.0" fitWidth="63.0" layoutX="543.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/RegresarMenu.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="552.0" layoutY="325.0" text="Regresar" />
+      <Button fx:id="btnRegresarMenu" layoutX="526.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="83.0" prefWidth="91.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
    </children>
 </AnchorPane>

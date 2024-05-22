@@ -41,6 +41,8 @@ public class MenuEmailProveedorController implements Initializable {
     @FXML
     private Button btnRegresar;
     @FXML
+    private Button btnRegresarP;
+    @FXML
     private TextField txtCodEmailPro;
     @FXML
     private TextField txtEmailPro;
@@ -262,7 +264,7 @@ public class MenuEmailProveedorController implements Initializable {
 
                             procedimiento.execute();
                             listaEmailProveedor.remove(tbEmailProveedor.getSelectionModel().getSelectedItem());
-                           
+
                             LimpiarControles();
 
                         } catch (Exception e) {
@@ -408,6 +410,9 @@ public class MenuEmailProveedorController implements Initializable {
     public void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
+
+        } else if (event.getSource() == btnRegresarP) {
+            escenarioPrincipal.menuProveedoresView();
 
         }
 

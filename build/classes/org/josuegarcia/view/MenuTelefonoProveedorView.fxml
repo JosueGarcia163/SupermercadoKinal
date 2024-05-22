@@ -107,5 +107,12 @@
             <TableColumn fx:id="colCodigoP" prefWidth="68.79998779296875" text="codigoProveedor" />
         </columns>
       </TableView>
+      <ImageView fitHeight="67.0" fitWidth="48.0" layoutX="581.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/RegresarMenu.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="583.0" layoutY="317.0" text="regresar" />
+      <Button fx:id="btnRegresarP" layoutX="574.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="78.0" prefWidth="66.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
    </children>
 </AnchorPane>

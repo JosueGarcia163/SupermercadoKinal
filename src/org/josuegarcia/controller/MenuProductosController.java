@@ -120,7 +120,7 @@ public class MenuProductosController implements Initializable {
         txtPrecioM.setText(String.valueOf(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getPrecioMayor()));
         txtExistencia.setText(String.valueOf(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getExistencia()));
         cmbCodigoTipoProducto.getSelectionModel().select(buscarTipoP(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
-        cmbCodigoProveedor.getSelectionModel().select(buscarTipoP(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getCodigoProveedor()));
+        cmbCodigoProveedor.getSelectionModel().select(getBuscarProveedores(((Productos) tbProducto.getSelectionModel().getSelectedItem()).getCodigoProveedor()));
 
     }
 
@@ -135,6 +135,34 @@ public class MenuProductosController implements Initializable {
             while (registro.next()) {
                 resultado = new TipoProducto(registro.getInt("codigoTipoProducto"),
                         registro.getString("descripcion")
+                );
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultado;
+    }
+
+    // Es para buscar el elemento de la llave foranea para mostrarla en la comboBox
+    public Proveedores getBuscarProveedores(int codigoProveedor) {
+        Proveedores resultado = null;
+        try {
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_BuscarProveedores(?)}");
+            procedimiento.setInt(1, codigoProveedor);
+            ResultSet registro = procedimiento.executeQuery();
+
+            while (registro.next()) {
+                resultado = new Proveedores(registro.getInt("codigoProveedor"),
+                        registro.getString("NITproveedor"),
+                        registro.getString("nombreProveedor"),
+                        registro.getString("apellidosProveedor"),
+                        registro.getString("direccionProveedor"),
+                        registro.getString("razonSocial"),
+                        registro.getString("contactoPrincipal"),
+                        registro.getString("paginaWeb")
                 );
 
             }

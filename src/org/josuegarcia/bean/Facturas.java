@@ -3,8 +3,8 @@
  */
 package org.josuegarcia.bean;
 
-
 public class Facturas {
+
     // Declaramos variables 
     private int numeroFactura;
     private String estado;
@@ -12,13 +12,11 @@ public class Facturas {
     private String fechaFactura;
     private int codigoCliente;
     private int codigoEmpleado;
-    
-    
+
     // Constructor vacio
     public Facturas() {
     }
-    
-    
+
     // Constructor lleno
     public Facturas(int numeroFactura, String estado, double totalFactura, String fechaFactura, int codigoCliente, int codigoEmpleado) {
         this.numeroFactura = numeroFactura;
@@ -77,9 +75,10 @@ public class Facturas {
     public void setCodigoEmpleado(int codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "" + getNumeroFactura();
+    }
+
 }

@@ -43,6 +43,8 @@ public class MenuDetalleCompraController implements Initializable {
     @FXML
     private Button btnRegresar;
     @FXML
+    private Button btnRegresarMenu;
+    @FXML
     private TextField txtCodDetalleC;
     @FXML
     private TextField txtCostoU;
@@ -475,6 +477,9 @@ public class MenuDetalleCompraController implements Initializable {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
 
+        }else if(event.getSource() == btnRegresarMenu){
+            escenarioPrincipal.MenuComprasView();
+        
         }
 
     }

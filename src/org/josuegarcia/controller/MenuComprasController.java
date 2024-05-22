@@ -41,6 +41,8 @@ public class MenuComprasController implements Initializable {
     @FXML
     private Button btnRegresar;
     @FXML
+    private Button btnIrCompras;
+    @FXML
     private TextField txtNumeroDocumento;
     @FXML
     private TextField txtFechaDocumento;
@@ -89,9 +91,7 @@ public class MenuComprasController implements Initializable {
         colTotalDocumento.setCellValueFactory(new PropertyValueFactory<Compras, Double>("totalDocumento"));
 
     }
-    
-     
-    
+
     // Es para identificar la tupla seleccionada por el usuario en la ventana de JavaFx
     public void seleccionarElemento() {
         txtNumeroDocumento.setText(String.valueOf(((Compras) tbCompras.getSelectionModel().getSelectedItem()).getNumeroDocumento()));
@@ -178,9 +178,8 @@ public class MenuComprasController implements Initializable {
         }
 
     }
-    
-    
-     // metodo para eliminar una tupla
+
+    // metodo para eliminar una tupla
     public void eliminar() {
         switch (tipoDeOperaciones) {
             case EDITAR:
@@ -221,8 +220,8 @@ public class MenuComprasController implements Initializable {
         }
 
     }
-    
-     // creamos el metodo de editar
+
+    // creamos el metodo de editar
     public void editar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
@@ -268,8 +267,8 @@ public class MenuComprasController implements Initializable {
                 break;
         }
     }
-    
-     public void actualizar() {
+
+    public void actualizar() {
         try {
             PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarCompras(?, ?, ?, ?)}");
             // registrara lo que presiono el usuario 
@@ -278,12 +277,12 @@ public class MenuComprasController implements Initializable {
             registro.setFechaDocumento(txtFechaDocumento.getText());
             registro.setDescripcion(txtDescripcion.getText());
             registro.setTotalDocumento(Double.parseDouble(txtTotalDocumento.getText()));
-  
+
             procedimiento.setInt(1, registro.getNumeroDocumento());
             procedimiento.setString(2, registro.getFechaDocumento());
             procedimiento.setString(3, registro.getDescripcion());
             procedimiento.setDouble(4, registro.getTotalDocumento());
-      
+
             procedimiento.execute();
 
         } catch (Exception e) {
@@ -292,8 +291,8 @@ public class MenuComprasController implements Initializable {
         }
 
     }
-     
-      //Este metodo reporte nos sirve para poder cancelar alguna actualizacion o el metodo Agregar
+
+    //Este metodo reporte nos sirve para poder cancelar alguna actualizacion o el metodo Agregar
     public void reporte() {
         switch (tipoDeOperaciones) {
             case EDITAR:
@@ -312,8 +311,6 @@ public class MenuComprasController implements Initializable {
         }
 
     }
-    
-
 
     // Metodo para desactivar controller
     public void desactivarControles() {
@@ -356,6 +353,9 @@ public class MenuComprasController implements Initializable {
     public void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
+
+        } else if (event.getSource() == btnIrCompras) {
+            escenarioPrincipal.MenuDetalleCompraView();
 
         }
 

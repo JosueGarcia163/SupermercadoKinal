@@ -41,6 +41,8 @@ public class MenuTelefonoProveedorController implements Initializable {
     @FXML
     private Button btnRegresar;
     @FXML
+    private Button btnRegresarP;
+    @FXML
     private TextField txtCodigoTelefonoP;
     @FXML
     private TextField txtNumeroPrincipal;
@@ -270,7 +272,7 @@ public class MenuTelefonoProveedorController implements Initializable {
 
                             procedimiento.execute();
                             listaTelefonoProveedor.remove(tbTelefonoProveedor.getSelectionModel().getSelectedItem());
-                          
+
                             LimpiarControles();
 
                         } catch (Exception e) {
@@ -421,6 +423,10 @@ public class MenuTelefonoProveedorController implements Initializable {
     public void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
+
+        }
+        else if (event.getSource() == btnRegresarP) {
+            escenarioPrincipal.menuProveedoresView();
 
         }
 

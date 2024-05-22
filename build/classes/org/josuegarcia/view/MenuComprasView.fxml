@@ -102,5 +102,12 @@
          </image>
       </ImageView>
       <Button fx:id="btnRegresar" layoutX="356.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="84.0" prefWidth="123.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <ImageView fitHeight="58.0" fitWidth="70.0" layoutX="283.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Siguiente.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="268.0" layoutY="377.0" text="Detalle Compras" />
+      <Button fx:id="btnIrCompras" layoutX="257.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="58.0" prefWidth="112.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
    </children>
 </AnchorPane>

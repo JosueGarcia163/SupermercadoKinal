@@ -37,6 +37,12 @@ public class MenuProveedorController implements Initializable {
     private Principal escenarioPrincipal;
     @FXML
     private Button btnRegresar;
+    
+    @FXML
+    private Button btnIrEmailProveedores;
+    @FXML
+    private Button btnIrTelefono;
+    
     @FXML
     private TextField txtCodigoP;
     @FXML
@@ -87,6 +93,8 @@ public class MenuProveedorController implements Initializable {
     private ImageView imgEditar;
     @FXML
     private ImageView imgReporte;
+    
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -405,6 +413,14 @@ public class MenuProveedorController implements Initializable {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
 
+        }else if(event.getSource() == btnIrEmailProveedores){
+            escenarioPrincipal.MenuEmailProveedorView();
+        
+        
+        }else if(event.getSource() == btnIrTelefono){
+            escenarioPrincipal.MenuTelefonoProveedorView();
+        
+        
         }
 
     }

@@ -23,8 +23,10 @@ import org.josuegarcia.controller.MenuCargoEmpleadoController;
 import org.josuegarcia.controller.MenuClientesController;
 import org.josuegarcia.controller.MenuComprasController;
 import org.josuegarcia.controller.MenuDetalleCompraController;
+import org.josuegarcia.controller.MenuDetalleFacturaController;
 import org.josuegarcia.controller.MenuEmailProveedorController;
 import org.josuegarcia.controller.MenuEmpleadosController;
+import org.josuegarcia.controller.MenuFacturasController;
 import org.josuegarcia.controller.MenuProductosController;
 import org.josuegarcia.controller.MenuProgramadorController;
 import org.josuegarcia.controller.MenuProveedorController;
@@ -190,6 +192,27 @@ public class Principal extends Application {
             e.printStackTrace();
         }
     }
+    
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuDetalleCompraView.fxml"
+    public void MenuFacturasView() {
+        try {
+            MenuFacturasController menuFacturasView = (MenuFacturasController) cambiarEscena("MenuFacturasView.fxml", 661, 495);
+            menuFacturasView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuDetalleCompraView.fxml"
+    public void MenuDetalleFacturaView() {
+        try {
+            MenuDetalleFacturaController menuDetalleFacturasView = (MenuDetalleFacturaController) cambiarEscena("MenuDetalleFacturaView.fxml", 653, 482);
+            menuDetalleFacturasView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
 
     public static void main(String[] args) {
         launch(args);

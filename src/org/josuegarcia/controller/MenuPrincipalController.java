@@ -1,5 +1,5 @@
 /* Documentacion Nombre completo: Josue David Garcia Mendez Codigo Tecnico:IN5BV
- * Fecha Creacion: 11/4/24 Fecha Modificaciones: 9/5/24
+ * Fecha Creacion: 11/4/24 Fecha Modificaciones: 22/5/24
  */
 package org.josuegarcia.controller;
 
@@ -49,6 +49,11 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private MenuItem btnDetalleCompra;
 
+    @FXML
+    private MenuItem btnFacturas;
+    
+    @FXML
+    private MenuItem btnDetalleFactura;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -86,7 +91,14 @@ public class MenuPrincipalController implements Initializable {
             escenarioPrincipal.MenuEmpleadoView();
         }else if (event.getSource() == btnDetalleCompra) {
             escenarioPrincipal.MenuDetalleCompraView();
+        }else if (event.getSource() == btnFacturas) {
+            escenarioPrincipal.MenuFacturasView();
+        }else if (event.getSource() == btnDetalleFactura) {
+            escenarioPrincipal.MenuDetalleFacturaView();
+        }else if (event.getSource() == btnTelefonoProveedor) {
+            escenarioPrincipal.MenuTelefonoProveedorView();
         }
+        
 
     }
 
