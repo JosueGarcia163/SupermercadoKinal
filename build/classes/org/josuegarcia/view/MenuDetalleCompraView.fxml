@@ -25,7 +25,7 @@
             <Image url="@../images/DetalleCompra2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="42.0" fitWidth="61.0" layoutX="575.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="63.0" fitWidth="72.0" layoutX="562.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Logo%20Supermercado.png" />
          </image>
@@ -111,12 +111,12 @@
             <TableColumn fx:id="colNumeroD" prefWidth="86.4000244140625" text="numeroDocumento" />
         </columns>
       </TableView>
-      <ImageView fitHeight="50.0" fitWidth="33.0" layoutX="568.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="552.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/casa.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRegresar" layoutX="545.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="42.0" prefWidth="78.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <Button fx:id="btnRegresar" layoutX="544.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="63.0" prefWidth="78.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
       <ImageView fitHeight="89.0" fitWidth="63.0" layoutX="543.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/RegresarMenu.png" />
