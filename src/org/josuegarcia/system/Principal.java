@@ -105,7 +105,7 @@ public class Principal extends Application {
     // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuProgramador.fxml"
     public void menuProveedoresView() {
         try {
-            MenuProveedorController menuProveedorView = (MenuProveedorController) cambiarEscena("MenuProveedorView.fxml", 563, 488);
+            MenuProveedorController menuProveedorView = (MenuProveedorController) cambiarEscena("MenuProveedorView.fxml", 625, 527);
             menuProveedorView.setEscenarioPrincipal(this);
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,7 +146,7 @@ public class Principal extends Application {
     // Creamos el metodo para poder hacer el cambio de escena y mostrar la vista de la escena "MenuProductosView.fxml"
     public void MenuProductosView() {
         try {
-            MenuProductosController menuProductosView = (MenuProductosController) cambiarEscena("MenuProductosView.fxml", 566, 400);
+            MenuProductosController menuProductosView = (MenuProductosController) cambiarEscena("MenuProductosView.fxml", 727, 510);
             menuProductosView.setEscenarioPrincipal(this);
         } catch (Exception e) {
             e.printStackTrace();

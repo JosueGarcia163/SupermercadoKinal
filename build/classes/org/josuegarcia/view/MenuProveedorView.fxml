@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josuegarcia.controller.MenuProveedorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josuegarcia.controller.MenuProveedorController">
    <children>
-      <ImageView fitHeight="489.0" fitWidth="346.0" layoutX="225.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="527.0" fitWidth="471.0" layoutX="252.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/MenuProveedores2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="510.0" fitWidth="346.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="527.0" fitWidth="436.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/MenuProveedores.png" />
          </image>
@@ -109,37 +109,37 @@
             <Label prefHeight="17.0" prefWidth="76.0" text="paginaPro" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <TableView fx:id="tbProveedor" layoutX="2.0" layoutY="239.0" onMouseClicked="#seleccionarElemento" prefHeight="186.0" prefWidth="563.0" styleClass="menu-bar" stylesheets="@../resource/KinalExpressCSS.css">
+      <TableView fx:id="tbProveedor" layoutX="2.0" layoutY="239.0" onMouseClicked="#seleccionarElemento" prefHeight="216.0" prefWidth="617.0" styleClass="menu-bar" stylesheets="@../resource/KinalExpressCSS.css">
         <columns>
-          <TableColumn fx:id="colCodigoP" prefWidth="39.20004081726074" text="codigoProveedor" />
-          <TableColumn fx:id="colNitP" minWidth="0.0" prefWidth="59.99993896484375" text="NITproveedor" />
-            <TableColumn fx:id="colNombreP" prefWidth="76.80005645751953" text="nombreProveedor" />
-            <TableColumn fx:id="colApellidoP" minWidth="8.800048828125" prefWidth="73.5999755859375" text="apellidosProveedor" />
-            <TableColumn fx:id="colDireccionP" prefWidth="76.0" text="direccionProveedor" />
-            <TableColumn fx:id="colRazonP" prefWidth="67.99993896484375" text="razonSocial" />
-            <TableColumn fx:id="colContactoP" prefWidth="72.0" text="contactoPrincipal" />
-            <TableColumn fx:id="colPaginaP" prefWidth="88.00001831054692" text="paginaWeb" />
+          <TableColumn fx:id="colCodigoP" prefWidth="42.399993896484375" text="codigoProveedor" />
+          <TableColumn fx:id="colNitP" minWidth="0.0" prefWidth="44.000030517578125" text="NITproveedor" />
+            <TableColumn fx:id="colNombreP" prefWidth="79.20001220703125" text="nombreProveedor" />
+            <TableColumn fx:id="colApellidoP" minWidth="8.800048828125" prefWidth="82.4000244140625" text="apellidosProveedor" />
+            <TableColumn fx:id="colDireccionP" prefWidth="94.39996337890625" text="direccionProveedor" />
+            <TableColumn fx:id="colRazonP" prefWidth="72.0" text="razonSocial" />
+            <TableColumn fx:id="colContactoP" prefWidth="94.4000244140625" text="contactoPrincipal" />
+            <TableColumn fx:id="colPaginaP" prefWidth="108.00006103515625" text="paginaWeb" />
         </columns>
       </TableView>
-      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="496.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="499.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/casa.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRegresar" layoutX="473.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="46.0" prefWidth="76.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
-      <ImageView fitHeight="39.0" fitWidth="76.0" layoutX="23.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="btnRegresar" layoutX="476.0" layoutY="469.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="46.0" prefWidth="76.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <ImageView fitHeight="39.0" fitWidth="76.0" layoutX="22.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Siguiente.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnIrEmailProveedores" layoutX="16.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="52.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
-      <Label layoutX="68.0" layoutY="442.0" prefHeight="18.0" prefWidth="48.0" text="Email" />
-      <ImageView fitHeight="39.0" fitWidth="30.0" layoutX="143.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="btnIrEmailProveedores" layoutX="15.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="52.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <Label layoutX="70.0" layoutY="482.0" prefHeight="18.0" prefWidth="48.0" text="Email" />
+      <ImageView fitHeight="39.0" fitWidth="30.0" layoutX="142.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Siguiente2.png" />
          </image>
       </ImageView>
-      <Label layoutX="188.0" layoutY="443.0" text="Telefono" />
-      <Button fx:id="btnIrTelefono" layoutX="132.0" layoutY="433.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="52.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <Label layoutX="186.0" layoutY="483.0" text="Telefono" />
+      <Button fx:id="btnIrTelefono" layoutX="131.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="52.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
    </children>
 </AnchorPane>

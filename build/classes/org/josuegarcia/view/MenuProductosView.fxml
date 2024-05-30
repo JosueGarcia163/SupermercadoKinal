@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josuegarcia.controller.MenuProductosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josuegarcia.controller.MenuProductosController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="313.0" layoutX="-2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="518.0" fitWidth="366.0" layoutX="-2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/LogoProductos.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="408.0" fitWidth="299.0" layoutX="281.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="518.0" fitWidth="366.0" layoutX="364.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/LogoProductos2.png" />
          </image>
@@ -62,7 +62,7 @@
             </ImageView>
          </children>
       </GridPane>
-      <GridPane layoutX="273.0" layoutY="26.0" prefHeight="158.0" prefWidth="139.0">
+      <GridPane layoutX="273.0" layoutY="26.0" prefHeight="158.0" prefWidth="190.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -84,7 +84,7 @@
             <TextField fx:id="txtPrecioD" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <GridPane layoutX="422.0" layoutY="26.0" prefHeight="158.0" prefWidth="139.0">
+      <GridPane layoutX="470.0" layoutY="26.0" prefHeight="158.0" prefWidth="242.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -111,22 +111,22 @@
             <Image url="@../images/Logo%20Supermercado.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="44.0" fitWidth="52.0" layoutX="422.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="52.0" layoutX="668.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/casa.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRegresar" layoutX="412.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="67.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
-      <TableView fx:id="tbProducto" layoutX="1.0" layoutY="227.0" onMouseClicked="#seleccionarElemento" prefHeight="170.0" prefWidth="566.0" styleClass="menu-bar2" stylesheets="@../resource/KinalExpressCSS.css">
+      <Button fx:id="btnRegresar" layoutX="656.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="67.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" />
+      <TableView fx:id="tbProducto" layoutX="7.0" layoutY="245.0" onMouseClicked="#seleccionarElemento" prefHeight="250.0" prefWidth="727.0" styleClass="menu-bar2" stylesheets="@../resource/KinalExpressCSS.css">
         <columns>
-          <TableColumn fx:id="colCodigoP" prefWidth="46.39999544620514" text="codigoProducto" />
-          <TableColumn fx:id="colDescripcionP" prefWidth="62.39996337890625" text="descripcionProducto" />
-            <TableColumn fx:id="colPrecioU" prefWidth="75.19994354248047" text="precioUnitarioprecioUnitario" />
-            <TableColumn fx:id="colPrecioD" prefWidth="80.79998779296875" text="precioDocena" />
-            <TableColumn fx:id="colPrecioM" prefWidth="73.5999755859375" text="precioMayor" />
-            <TableColumn fx:id="colExistencia" prefWidth="75.199951171875" text="existencia" />
-            <TableColumn fx:id="colCodigoTipo" prefWidth="69.60003662109375" text="codigoTipoProducto" />
-            <TableColumn fx:id="colCodigoPro" prefWidth="80.00009155273438" text="codigoProveedor" />
+          <TableColumn fx:id="colCodigoP" prefWidth="60.799989223480225" text="codigoProducto" />
+          <TableColumn fx:id="colDescripcionP" prefWidth="68.80001068115234" text="descripcionProducto" />
+            <TableColumn fx:id="colPrecioU" prefWidth="120.0" text="precioUnitarioprecioUnitario" />
+            <TableColumn fx:id="colPrecioD" prefWidth="83.199951171875" text="precioDocena" />
+            <TableColumn fx:id="colPrecioM" prefWidth="82.39996337890625" text="precioMayor" />
+            <TableColumn fx:id="colExistencia" prefWidth="72.0" text="existencia" />
+            <TableColumn fx:id="colCodigoTipo" prefWidth="127.19998168945312" text="codigoTipoProducto" />
+            <TableColumn fx:id="colCodigoPro" prefWidth="105.5999755859375" text="codigoProveedor" />
         </columns>
       </TableView>
    </children>
