@@ -245,7 +245,11 @@ public class MenuDetalleFacturaController implements Initializable {
     public void agregar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
+                // desactivar el control que se rellenara solo
+                txtPrecioU.setEditable(false);
+                // activar controles 
                 activarControles();
+
                 btnAgregar.setText("Guardar");
                 btnEliminar.setText("Cancelar");
                 btnEditar.setDisable(true);
@@ -253,9 +257,12 @@ public class MenuDetalleFacturaController implements Initializable {
                 imgAgregar.setImage(new Image("/org/josuegarcia/images/Guardar.png"));
                 imgEliminar.setImage(new Image("/org/josuegarcia/images/Cancelar.png"));
                 tipoDeOperaciones = operaciones.EDITAR;
+                
                 break;
             case EDITAR:
                 guardar();
+                // desactivar el control que se rellenara solo
+                txtPrecioU.setEditable(false);
                 activarControles();
                 LimpiarControles();
                 btnAgregar.setText("Agregar");
@@ -275,19 +282,19 @@ public class MenuDetalleFacturaController implements Initializable {
         // Creamos el objeto registro donde guardaremos nuestros datos 
         DetalleFactura registro = new DetalleFactura();
         registro.setCodigoDetalleFactura(Integer.parseInt(txtCodDetalleFac.getText()));
-        registro.setPrecioUnitario(Double.parseDouble(txtPrecioU.getText()));
+
         registro.setCantidad(Integer.parseInt(txtCantidad.getText()));
         registro.setNumeroFactura(((Facturas) cmbNumeroFactura.getSelectionModel().getSelectedItem()).getNumeroFactura());
         registro.setCodigoProducto(((Productos) cmbCodigoProducto.getSelectionModel().getSelectedItem()).getCodigoProducto());
 
         try {
             // haremos conexion con la base de datos para poder registrar datos por medio del procedimiento almacenado
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarDetalleFactura(?, ?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarDetalleFactura(?, ?, ?, ?)}");
             procedimiento.setInt(1, registro.getCodigoDetalleFactura());
-            procedimiento.setDouble(2, registro.getPrecioUnitario());
-            procedimiento.setInt(3, registro.getCantidad());
-            procedimiento.setInt(4, registro.getNumeroFactura());
-            procedimiento.setString(5, registro.getCodigoProducto());
+
+            procedimiento.setInt(2, registro.getCantidad());
+            procedimiento.setInt(3, registro.getNumeroFactura());
+            procedimiento.setString(4, registro.getCodigoProducto());
             procedimiento.execute();
             // agregamos a la listaProducto el objeto registro que contiene los datos que agregamos.
             listaDetalleFacturas.add(registro);
@@ -360,6 +367,9 @@ public class MenuDetalleFacturaController implements Initializable {
                     txtCodDetalleFac.setEditable(false);
                     tipoDeOperaciones = operaciones.EDITAR;
 
+                    // desactivar el control que se rellenara solo
+                    txtPrecioU.setEditable(false);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe de seleccionar un elemento");
                 }
@@ -393,23 +403,21 @@ public class MenuDetalleFacturaController implements Initializable {
     public void actualizar() {
         try {
             // llamamos instancia
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarDetalleFactura(?, ?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarDetalleFactura(?, ?, ?, ?)}");
             // registrara lo que presiono el usuario 
             // almacenamos la informacion de la tabla en registro
             DetalleFactura registro = (DetalleFactura) tbDetalleFactura.getSelectionModel().getSelectedItem();
             // podremos editar unicamente los datos que no sean la Id, para no afectar nuestro orden en la db
             registro.setCodigoDetalleFactura(Integer.parseInt(txtCodDetalleFac.getText()));
-            registro.setPrecioUnitario(Double.parseDouble(txtPrecioU.getText()));
             registro.setCantidad(Integer.parseInt(txtCantidad.getText()));
             registro.setNumeroFactura(((Facturas) cmbNumeroFactura.getSelectionModel().getSelectedItem()).getNumeroFactura());
             registro.setCodigoProducto(((Productos) cmbCodigoProducto.getSelectionModel().getSelectedItem()).getCodigoProducto());
 
             // registramos los en procedimientos, los datos para actualizar la tabla 
             procedimiento.setInt(1, registro.getCodigoDetalleFactura());
-            procedimiento.setDouble(2, registro.getPrecioUnitario());
-            procedimiento.setInt(3, registro.getCantidad());
-            procedimiento.setInt(4, registro.getNumeroFactura());
-            procedimiento.setString(5, registro.getCodigoProducto());
+            procedimiento.setInt(2, registro.getCantidad());
+            procedimiento.setInt(3, registro.getNumeroFactura());
+            procedimiento.setString(4, registro.getCodigoProducto());
 
             procedimiento.execute();
 
@@ -449,7 +457,7 @@ public class MenuDetalleFacturaController implements Initializable {
     // metodo para activarControllers
     public void activarControles() {
         txtCodDetalleFac.setEditable(true);
-        txtPrecioU.setEditable(true);
+
         txtCantidad.setEditable(true);
 
     }
@@ -479,7 +487,7 @@ public class MenuDetalleFacturaController implements Initializable {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
 
-        }else if (event.getSource() == btnRegresarMenu) {
+        } else if (event.getSource() == btnRegresarMenu) {
             escenarioPrincipal.MenuFacturasView();
 
         }

@@ -42,7 +42,7 @@ public class MenuFacturasController implements Initializable {
 
     @FXML
     private Button btnRegresar;
-     @FXML
+    @FXML
     private Button btnIrDetalleFac;
     @FXML
     private TextField txtNumeroF;
@@ -246,10 +246,11 @@ public class MenuFacturasController implements Initializable {
         // Almacena en nuestro ObservableList listaTipoProducto lo agregado anteriormente en lista
         return listaEmpleados = FXCollections.observableArrayList(lista);
     }
-    
+
     public void agregar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
+                txtTotalF.setEditable(false);
                 activarControles();
                 btnAgregar.setText("Guardar");
                 btnEliminar.setText("Cancelar");
@@ -261,6 +262,7 @@ public class MenuFacturasController implements Initializable {
                 break;
             case EDITAR:
                 guardar();
+                txtTotalF.setEditable(false);
                 activarControles();
                 LimpiarControles();
                 btnAgregar.setText("Agregar");
@@ -281,20 +283,18 @@ public class MenuFacturasController implements Initializable {
         Facturas registro = new Facturas();
         registro.setNumeroFactura(Integer.parseInt((txtNumeroF.getText())));
         registro.setEstado(txtEstado.getText());
-        registro.setTotalFactura(Double.parseDouble(txtTotalF.getText()));
         registro.setFechaFactura((txtFechaF.getText()));
         registro.setCodigoCliente(((Clientes) cmbCodigoCliente.getSelectionModel().getSelectedItem()).getCodigoCliente());
         registro.setCodigoEmpleado(((Empleados) cmbCodigoEmpleado.getSelectionModel().getSelectedItem()).getCodigoEmpleado());
 
         try {
             // haremos conexion con la base de datos para poder registrar datos por medio del procedimiento almacenado
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarFactura(?, ?, ?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarFactura(?, ?, ?, ?, ?)}");
             procedimiento.setInt(1, registro.getNumeroFactura());
             procedimiento.setString(2, registro.getEstado());
-            procedimiento.setDouble(3, registro.getTotalFactura());
-            procedimiento.setString(4, registro.getFechaFactura());
-            procedimiento.setInt(5, registro.getCodigoCliente());
-            procedimiento.setInt(6, registro.getCodigoEmpleado());
+            procedimiento.setString(3, registro.getFechaFactura());
+            procedimiento.setInt(4, registro.getCodigoCliente());
+            procedimiento.setInt(5, registro.getCodigoEmpleado());
             procedimiento.execute();
             // agregamos a la listaProducto el objeto registro que contiene los datos que agregamos.
             listaFacturas.add(registro);
@@ -305,7 +305,7 @@ public class MenuFacturasController implements Initializable {
         }
 
     }
-    
+
     // metodo para eliminar una tupla
     public void eliminar() {
         switch (tipoDeOperaciones) {
@@ -348,9 +348,8 @@ public class MenuFacturasController implements Initializable {
         }
 
     }
-    
-    
-     // creamos el metodo de editar
+
+    // creamos el metodo de editar
     public void editar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
@@ -368,6 +367,7 @@ public class MenuFacturasController implements Initializable {
                     txtNumeroF.setEditable(false);
                     tipoDeOperaciones = operaciones.EDITAR;
 
+                    txtTotalF.setEditable(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe de seleccionar un elemento");
                 }
@@ -375,6 +375,7 @@ public class MenuFacturasController implements Initializable {
                 break;
             case EDITAR:
                 actualizar();
+
                 // Colocamos el nombre predeterminado
                 btnEditar.setText("Editar");
                 btnReportes.setText("Reportes");
@@ -399,26 +400,23 @@ public class MenuFacturasController implements Initializable {
 
     public void actualizar() {
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarFactura(?, ?, ?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarFactura(?, ?, ?, ?, ?)}");
             // registrara lo que presiono el usuario 
             // almacenamos la informacion de la tabla en registro
             Facturas registro = (Facturas) tbFacturas.getSelectionModel().getSelectedItem();
             // podremos editar unicamente los datos que no sean la Id, para no afectar nuestro orden en la db
             registro.setCodigoEmpleado(Integer.parseInt(txtNumeroF.getText()));
             registro.setEstado((txtEstado.getText()));
-            registro.setTotalFactura(Double.parseDouble(txtTotalF.getText()));
             registro.setFechaFactura((txtFechaF.getText()));
             registro.setCodigoCliente(((Clientes) cmbCodigoCliente.getSelectionModel().getSelectedItem()).getCodigoCliente());
             registro.setCodigoEmpleado(((Empleados) cmbCodigoEmpleado.getSelectionModel().getSelectedItem()).getCodigoEmpleado());
-            
 
             // registramos los en procedimientos, los datos para actualizar la tabla 
             procedimiento.setInt(1, registro.getNumeroFactura());
             procedimiento.setString(2, registro.getEstado());
-            procedimiento.setDouble(3, registro.getTotalFactura());
-            procedimiento.setString(4, registro.getFechaFactura());
-            procedimiento.setInt(5, registro.getCodigoCliente());
-            procedimiento.setInt(6, registro.getCodigoEmpleado());
+            procedimiento.setString(3, registro.getFechaFactura());
+            procedimiento.setInt(4, registro.getCodigoCliente());
+            procedimiento.setInt(5, registro.getCodigoEmpleado());
             procedimiento.execute();
 
         } catch (Exception e) {
@@ -427,10 +425,8 @@ public class MenuFacturasController implements Initializable {
         }
 
     }
-    
 
-    
-     //Este metodo reporte nos sirve para poder cancelar alguna actualizacion o el metodo Agregar
+    //Este metodo reporte nos sirve para poder cancelar alguna actualizacion o el metodo Agregar
     public void reporte() {
         switch (tipoDeOperaciones) {
             case EDITAR:
@@ -463,9 +459,7 @@ public class MenuFacturasController implements Initializable {
     public void activarControles() {
         txtNumeroF.setEditable(true);
         txtEstado.setEditable(true);
-        txtTotalF.setEditable(true);
         txtFechaF.setEditable(true);
-
 
     }
 
@@ -496,10 +490,10 @@ public class MenuFacturasController implements Initializable {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
 
-        }else if (event.getSource() == btnIrDetalleFac) {
+        } else if (event.getSource() == btnIrDetalleFac) {
             escenarioPrincipal.MenuDetalleFacturaView();
 
-    }
+        }
     }
 
 }

@@ -67,17 +67,17 @@
             </ImageView>
          </children>
       </GridPane>
-      <GridPane layoutX="414.0" layoutY="60.0" prefHeight="50.0" prefWidth="193.0">
+      <GridPane layoutX="414.0" layoutY="60.0" prefHeight="76.0" prefWidth="210.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.39996337890625" minWidth="10.0" prefWidth="87.39996337890625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.60003662109375" minWidth="10.0" prefWidth="90.60003662109375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.5999755859375" minWidth="10.0" prefWidth="98.8" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.2" minWidth="10.0" prefWidth="111.2" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="33.0" prefWidth="78.0" text="numeroDocumento" />
-            <ComboBox fx:id="cmbNumeroD" prefHeight="43.0" prefWidth="104.0" GridPane.columnIndex="1" />
+            <Label prefHeight="34.0" prefWidth="103.0" text="numeroDocumento" />
+            <ComboBox fx:id="cmbNumeroD" prefHeight="43.0" prefWidth="99.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <GridPane layoutX="195.0" layoutY="21.0" prefHeight="146.0" prefWidth="200.0">

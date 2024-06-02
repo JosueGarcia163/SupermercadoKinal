@@ -127,6 +127,7 @@ public class MenuComprasController implements Initializable {
         switch (tipoDeOperaciones) {
             case NINGUNO:
                 activarControles();
+                txtTotalDocumento.setEditable(false);
                 btnAgregar.setText("Guardar");
                 btnEliminar.setText("Cancelar");
                 btnEditar.setDisable(true);
@@ -136,6 +137,7 @@ public class MenuComprasController implements Initializable {
                 tipoDeOperaciones = operaciones.EDITAR;
                 break;
             case EDITAR:
+                txtTotalDocumento.setEditable(false);
                 guardar();
                 activarControles();
                 LimpiarControles();
@@ -158,15 +160,13 @@ public class MenuComprasController implements Initializable {
         registro.setNumeroDocumento(Integer.parseInt(txtNumeroDocumento.getText()));
         registro.setFechaDocumento(txtFechaDocumento.getText());
         registro.setDescripcion(txtDescripcion.getText());
-        registro.setTotalDocumento(Double.parseDouble(txtTotalDocumento.getText()));
 
         try {
             // haremos conexion con la base de datos para poder registrar datos por medio del procedimiento almacenado
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarCompras(?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarCompras(?, ?, ?)}");
             procedimiento.setInt(1, registro.getNumeroDocumento());
             procedimiento.setString(2, registro.getFechaDocumento());
             procedimiento.setString(3, registro.getDescripcion());
-            procedimiento.setDouble(4, registro.getTotalDocumento());
 
             procedimiento.execute();
             // agregamos a la listaTipoProducto el objeto registro que contiene los datos que agregamos.
@@ -238,6 +238,9 @@ public class MenuComprasController implements Initializable {
                     activarControles();
                     txtNumeroDocumento.setEditable(false);
                     tipoDeOperaciones = operaciones.EDITAR;
+                    
+                    // Desactivar controles
+                    txtTotalDocumento.setEditable(false);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe de seleccionar un elemento");
@@ -245,6 +248,7 @@ public class MenuComprasController implements Initializable {
 
                 break;
             case EDITAR:
+                txtTotalDocumento.setEditable(false);
                 actualizar();
                 // Colocamos el nombre predeterminado
                 btnEditar.setText("Editar");
@@ -270,18 +274,16 @@ public class MenuComprasController implements Initializable {
 
     public void actualizar() {
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarCompras(?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarCompras(?, ?, ?)}");
             // registrara lo que presiono el usuario 
             Compras registro = (Compras) tbCompras.getSelectionModel().getSelectedItem();
             // podremos editar unicamente los datos que no sean la Id, para no afectar nuestro orden en la db
             registro.setFechaDocumento(txtFechaDocumento.getText());
             registro.setDescripcion(txtDescripcion.getText());
-            registro.setTotalDocumento(Double.parseDouble(txtTotalDocumento.getText()));
 
             procedimiento.setInt(1, registro.getNumeroDocumento());
             procedimiento.setString(2, registro.getFechaDocumento());
             procedimiento.setString(3, registro.getDescripcion());
-            procedimiento.setDouble(4, registro.getTotalDocumento());
 
             procedimiento.execute();
 

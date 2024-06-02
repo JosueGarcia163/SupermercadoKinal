@@ -251,6 +251,12 @@ public class MenuProductosController implements Initializable {
     public void agregar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
+
+                txtPrecioUnitarioP.setEditable(false);
+                txtPrecioD.setEditable(false);
+                txtPrecioM.setEditable(false);
+                txtExistencia.setEditable(false);
+
                 activarControles();
                 btnAgregar.setText("Guardar");
                 btnEliminar.setText("Cancelar");
@@ -261,7 +267,14 @@ public class MenuProductosController implements Initializable {
                 tipoDeOperaciones = operaciones.EDITAR;
                 break;
             case EDITAR:
+
                 guardar();
+
+                txtPrecioUnitarioP.setEditable(false);
+                txtPrecioD.setEditable(false);
+                txtPrecioM.setEditable(false);
+                txtExistencia.setEditable(false);
+
                 activarControles();
                 LimpiarControles();
                 btnAgregar.setText("Agregar");
@@ -278,28 +291,21 @@ public class MenuProductosController implements Initializable {
     }
 
     public void guardar() {
+
         // Creamos el objeto registro donde guardaremos nuestros datos 
         Productos registro = new Productos();
         registro.setCodigoProducto((txtCodigoP.getText()));
         registro.setDescripcionProducto(txtDescripcionP.getText());
-        registro.setPrecioUnitario(Double.parseDouble(txtPrecioUnitarioP.getText()));
-        registro.setPrecioDocena(Double.parseDouble(txtPrecioD.getText()));
-        registro.setPrecioMayor(Double.parseDouble(txtPrecioM.getText()));
-        registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
         registro.setCodigoTipoProducto(((TipoProducto) cmbCodigoTipoProducto.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
         registro.setCodigoProveedor(((Proveedores) cmbCodigoProveedor.getSelectionModel().getSelectedItem()).getCodigoProveedor());
 
         try {
             // haremos conexion con la base de datos para poder registrar datos por medio del procedimiento almacenado
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarProductos(?, ?, ?, ?, ?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call Sp_AgregarProductos(?, ?, ?, ?)}");
             procedimiento.setString(1, registro.getCodigoProducto());
             procedimiento.setString(2, registro.getDescripcionProducto());
-            procedimiento.setDouble(3, registro.getPrecioUnitario());
-            procedimiento.setDouble(4, registro.getPrecioDocena());
-            procedimiento.setDouble(5, registro.getPrecioMayor());
-            procedimiento.setInt(6, registro.getExistencia());
-            procedimiento.setInt(7, registro.getCodigoTipoProducto());
-            procedimiento.setInt(8, registro.getCodigoProveedor());
+            procedimiento.setInt(3, registro.getCodigoTipoProducto());
+            procedimiento.setInt(4, registro.getCodigoProveedor());
             procedimiento.execute();
             // agregamos a la listaProducto el objeto registro que contiene los datos que agregamos.
             listaProductos.add(registro);
@@ -373,6 +379,14 @@ public class MenuProductosController implements Initializable {
                     activarControles();
                     txtCodigoP.setEditable(false);
                     tipoDeOperaciones = operaciones.EDITAR;
+                    
+                    
+                    
+                    // Desactivar controles que se rellenaran solos
+                    txtPrecioUnitarioP.setEditable(false);
+                    txtPrecioD.setEditable(false);
+                    txtPrecioM.setEditable(false);
+                    txtExistencia.setEditable(false);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe de seleccionar un elemento");
@@ -380,6 +394,7 @@ public class MenuProductosController implements Initializable {
 
                 break;
             case EDITAR:
+
                 actualizar();
                 // Colocamos el nombre predeterminado
                 btnEditar.setText("Editar");
@@ -406,29 +421,22 @@ public class MenuProductosController implements Initializable {
     // hacemos actualizar 
     public void actualizar() {
         try {
+
             // llamamos instancia
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarProductos(?, ?, ?, ?, ?, ?, ?, ?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_EditarProductos(?, ?, ?, ?)}");
             // registrara lo que presiono el usuario 
             // almacenamos la informacion de la tabla en registro
             Productos registro = (Productos) tbProducto.getSelectionModel().getSelectedItem();
             // podremos editar unicamente los datos que no sean la Id, para no afectar nuestro orden en la db
             registro.setDescripcionProducto(txtDescripcionP.getText());
-            registro.setPrecioUnitario(Double.parseDouble(txtPrecioUnitarioP.getText()));
-            registro.setPrecioDocena(Double.parseDouble(txtPrecioD.getText()));
-            registro.setPrecioMayor(Double.parseDouble(txtPrecioM.getText()));
-            registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
             registro.setCodigoTipoProducto(((TipoProducto) cmbCodigoTipoProducto.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
             registro.setCodigoProveedor(((Proveedores) cmbCodigoProveedor.getSelectionModel().getSelectedItem()).getCodigoProveedor());
 
             // registramos los en procedimientos, los datos para actualizar la tabla 
             procedimiento.setString(1, registro.getCodigoProducto());
             procedimiento.setString(2, registro.getDescripcionProducto());
-            procedimiento.setDouble(3, registro.getPrecioUnitario());
-            procedimiento.setDouble(4, registro.getPrecioDocena());
-            procedimiento.setDouble(5, registro.getPrecioMayor());
-            procedimiento.setInt(6, registro.getExistencia());
-            procedimiento.setInt(7, registro.getCodigoTipoProducto());
-            procedimiento.setInt(8, registro.getCodigoProveedor());
+            procedimiento.setInt(3, registro.getCodigoTipoProducto());
+            procedimiento.setInt(4, registro.getCodigoProveedor());
             procedimiento.execute();
 
         } catch (Exception e) {
@@ -462,20 +470,13 @@ public class MenuProductosController implements Initializable {
     public void desactivarControles() {
         txtCodigoP.setEditable(false);
         txtDescripcionP.setEditable(false);
-        txtPrecioUnitarioP.setEditable(false);
-        txtPrecioD.setEditable(false);
-        txtPrecioM.setEditable(false);
-        txtExistencia.setEditable(false);
+
     }
 
     // metodo para activarControllers
     public void activarControles() {
         txtCodigoP.setEditable(true);
         txtDescripcionP.setEditable(true);
-        txtPrecioUnitarioP.setEditable(true);
-        txtPrecioD.setEditable(true);
-        txtPrecioM.setEditable(true);
-        txtExistencia.setEditable(true);
 
     }
 
