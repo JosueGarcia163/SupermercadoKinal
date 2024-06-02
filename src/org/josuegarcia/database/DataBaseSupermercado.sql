@@ -78,7 +78,7 @@ create table Productos(
 	precioDocena decimal(10,2),
 	precioMayor decimal(10,2),
 	imagenProducto LONGBLOB,
-	existencia int not null,
+	existencia int ,
 	codigoTipoProducto int,
 	codigoProveedor int,
 	primary key PK_Productos(codigoProducto),
@@ -171,7 +171,7 @@ create procedure sp_ListarClientes()
 			from Clientes C;
 	end $$
 Delimiter ;
--- call sp_ListarClientes();
+ call sp_ListarClientes();
  
 -- Buscar Clientes
 Delimiter $$
@@ -448,13 +448,13 @@ call sp_ListarTipoProducto();
 -- -------- Compras
 -- Agregar 
 Delimiter $$
-create procedure Sp_AgregarCompras (in numeroDocumento int, in fechaDocumento date, in descripcion varchar (60), in totalDocumento decimal(10,2))
+create procedure Sp_AgregarCompras (in numeroDocumento int, in fechaDocumento date, in descripcion varchar (60))
 	begin 
-		insert into Compras (numeroDocumento,fechaDocumento,descripcion,totalDocumento) values (numeroDocumento,fechaDocumento,descripcion,totalDocumento);
+		insert into Compras (numeroDocumento,fechaDocumento,descripcion) values (numeroDocumento,fechaDocumento,descripcion);
 	end $$
 Delimiter ;
-call Sp_AgregarCompras (01, '2024-04-22', 'compra efectiva',20.05);
-call Sp_AgregarCompras (02, '2024-04-21', 'compra efectiva', 23.02);
+call Sp_AgregarCompras (01, '2024-04-22', 'compra efectiva');
+call Sp_AgregarCompras (02, '2024-04-21', 'compra efectiva');
 
 -- numeroDocumento int not null,
 -- fechaDocumento date,
@@ -506,14 +506,14 @@ call sp_ListarCompras();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarCompras(in numDocumento int, in fDocument date, in descrip varchar (60), in toDocumento decimal(10,2))
+	create procedure sp_EditarCompras(in numDocumento int, in fDocument date, in descrip varchar (60))
 			begin 
 				update Compras P
 					set
 				
 				P.fechaDocumento = fDocument,
-                P.descripcion = descrip,
-                P.totalDocumento = toDocumento
+                P.descripcion = descrip
+               
 				
 				
 			
@@ -521,7 +521,7 @@ Delimiter $$
 			end $$
 delimiter ;                 
  
-call sp_EditarCompras(02,'05-11-24','mala administracion',30.50);
+call sp_EditarCompras(02,'05-11-24','mala administracion');
 call sp_ListarCompras();
 
 
@@ -698,13 +698,13 @@ call sp_ListarEmailProveedor();
 -- -------- Productos
 -- Agregar 
 Delimiter $$
-create procedure Sp_AgregarProductos (in codigoProducto varchar(15), in descripcionProducto varchar(45), in precioUnitario decimal(10,2), in precioDocena decimal(10,2), in precioMayor decimal(10,2),  in existencia int, in codigoTipoProducto int, in codigoProveedor int)
+create procedure Sp_AgregarProductos (in codigoProducto varchar(15), in descripcionProducto varchar(45), in codigoTipoProducto int, in codigoProveedor int)
 	begin 
-		insert into Productos (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,existencia,codigoTipoProducto,codigoProveedor) values (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,existencia,codigoTipoProducto,codigoProveedor);
+		insert into Productos (codigoProducto,descripcionProducto,codigoTipoProducto,codigoProveedor) values (codigoProducto,descripcionProducto,codigoTipoProducto,codigoProveedor);
 	end $$
 Delimiter ;
-call Sp_AgregarProductos ('E5', 'Producto exitoso', 10.52, 125.69, 300.96, 56, 1, 1);
-call Sp_AgregarProductos ('E6', 'Producto hecho para familias', 11.89, 365.96, 400.56, 49, 2, 2);
+call Sp_AgregarProductos ('E5', 'Producto exitoso', 1, 1);
+call Sp_AgregarProductos ('E6', 'Producto hecho para familias', 2, 2);
 
  --   codigoProducto varchar(15),
  --   descripcionProducto varchar(45),
@@ -733,7 +733,7 @@ create procedure sp_ListarProductos()
 			from Productos P;
 	end $$
 Delimiter ;
-call sp_ListarProductos();
+-- call sp_ListarProductos();
 
 -- Buscar
 Delimiter $$
@@ -769,17 +769,13 @@ call sp_ListarProductos();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarProductos(in codigoPro varchar(15), in descripcionPro varchar(45), in precioUn decimal(10,2), in precioDoc decimal(10,2), in precioM decimal(10,2),  in exis int, in codigoTipoProducto int, in codigoProvee int)
+	create procedure sp_EditarProductos(in codigoPro varchar(15), in descripcionPro varchar(45), in codigoTipoProducto int, in codigoProvee int)
 			begin 
 				update Productos P
 					set
 
 
 				P.descripcionProducto = descripcionPro,
-				P.precioUnitario = precioUn,
-				P.precioDocena = precioDoc,
-				P.precioMayor = precioM,
-				P.existencia = exis,
                 P.codigoTipoProducto = codigoTipoProducto,
                 P.codigoProveedor = codigoProvee
 
@@ -790,7 +786,7 @@ Delimiter $$
 			end $$
 delimiter ;                 
 
-call sp_EditarProductos('E5','Bastante util',69.69, 102.84, 502.87, 2, 1, 2);
+call sp_EditarProductos('E5','Bastante util', 1, 2);
 call sp_ListarProductos();
 
 
@@ -914,6 +910,29 @@ end $$
 delimiter ;
 
 
+delimiter $$
+
+create trigger tr_actualizar_compras_totalDocumentoA_after
+after update on DetalleCompra
+for each row
+begin
+    declare total decimal(10, 2);
+
+    -- hace la sumatoria de los costoUnitario multiplicado por cantidad
+    select sum(costoUnitario * cantidad)
+    into total
+    from DetalleCompra
+    where numeroDocumento = new.numeroDocumento;
+
+    -- Actualiza el totalDocumento de la tabla compras asignando el total que se calculo
+    update Compras
+    set totalDocumento = total
+    where numeroDocumento = new.numeroDocumento;
+end $$
+
+delimiter ;
+
+
 
 -- -----------------------------Procedimiento Almacenado---------------------------------
 -- -------- DetalleCompra
@@ -1005,21 +1024,51 @@ create trigger tr_actualizar_producto_precios_after
 after insert on DetalleCompra
 for each row
 begin
+	declare precioUnitarioNuevo decimal (10, 2);
     declare precioDocenaNuevo decimal(10, 2);
     declare precioMayorNuevo decimal(10, 2);
 
     -- Para sacar los precios de docena y precio mayor
-    set precioDocenaNuevo = new.costoUnitario * 12;
-    set precioMayorNuevo = new.costoUnitario * 100;
+    set precioUnitarioNuevo = new.costoUnitario * 1.40;
+    set precioDocenaNuevo = new.costoUnitario * 1.35;
+    set precioMayorNuevo = new.costoUnitario * 1.25;
 
     -- Actualiza los precios en la tabla productos 
     update Productos
-    set precioUnitario = new.costoUnitario,
+    set precioUnitario = precioUnitarioNuevo,
         precioDocena = precioDocenaNuevo,
         precioMayor = precioMayorNuevo
     where codigoProducto = new.codigoProducto;
 end $$
 delimiter ;
+
+
+delimiter $$
+create trigger tr_actualizar_producto_preciosA_after
+after update on DetalleCompra
+for each row
+begin
+	declare precioUnitarioNuevo decimal (10, 2);
+    declare precioDocenaNuevo decimal(10, 2);
+    declare precioMayorNuevo decimal(10, 2);
+
+    -- Para sacar los precios de docena y precio mayor
+    set precioUnitarioNuevo = new.costoUnitario * 1.40;
+    set precioDocenaNuevo = new.costoUnitario * 1.35;
+    set precioMayorNuevo = new.costoUnitario * 1.25;
+
+    -- Actualiza los precios en la tabla productos 
+    update Productos
+    set precioUnitario = precioUnitarioNuevo,
+        precioDocena = precioDocenaNuevo,
+        precioMayor = precioMayorNuevo
+    where codigoProducto = new.codigoProducto;
+end $$
+delimiter ;
+
+
+
+
 
 -- ----------------------------- Trigger --------------------------------------------------------------------------
 
@@ -1047,6 +1096,28 @@ end $$
 delimiter ;
 
 
+delimiter $$
+create trigger tr_actualizar_producto_existenciaA_after
+after update on DetalleCompra
+for each row
+begin
+	declare nuevaExistencia int;
+
+    select existencia into nuevaExistencia
+    from Productos
+    where codigoProducto = new.codigoProducto;
+
+    set nuevaExistencia = new.cantidad;
+
+    -- Manda a existencia el valor actualizado que le dimos en DetalleCompra 
+    update Productos
+    set existencia = nuevaExistencia
+    where codigoProducto = new.codigoProducto;
+end $$
+delimiter ;
+
+
+
 
 -- Agregarmos nuevos registros para la actualizacion de productos
 call Sp_AgregarDetalleCompra (1, 35.50, 20, 'E5', 1);
@@ -1058,13 +1129,13 @@ call sp_ListarCompras();
 -- -------- Factura
 -- Agregar 
 Delimiter $$
-create procedure Sp_AgregarFactura (in numeroFactura int, in estado varchar(50), in totalFactura decimal(10,2), in fechaFactura varchar(45), in codigoCliente int,  in codigoEmpleado int)
+create procedure Sp_AgregarFactura (in numeroFactura int, in estado varchar(50),  in fechaFactura varchar(45), in codigoCliente int,  in codigoEmpleado int)
 	begin 
-		insert into Factura (numeroFactura,estado,totalFactura,fechaFactura,codigoCliente,codigoEmpleado) values (numeroFactura,estado,totalFactura,fechaFactura,codigoCliente,codigoEmpleado);
+		insert into Factura (numeroFactura,estado,fechaFactura,codigoCliente,codigoEmpleado) values (numeroFactura,estado,fechaFactura,codigoCliente,codigoEmpleado);
 	end $$
 Delimiter ;
-call Sp_AgregarFactura (1, 'Caducada', 102.39, '12-5-2025', 1, 1);
-call Sp_AgregarFactura (2, 'Vencida', 52.84,' 11-4-2016', 2, 2);
+call Sp_AgregarFactura (1, 'Caducada', '12-5-2025', 1, 1);
+call Sp_AgregarFactura (2, 'Vencida', ' 11-4-2016', 2, 2);
 
 -- 	  numeroFactura int not null,
 --    estado varchar(50),
@@ -1122,13 +1193,12 @@ delimiter ;
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarFactura(in numeroF int, in es varchar(50), in totalF decimal(10,2), in fechaF varchar(45), in codigoCli int,  in codigoEmple int)
+	create procedure sp_EditarFactura(in numeroF int, in es varchar(50), in fechaF varchar(45), in codigoCli int,  in codigoEmple int)
 			begin 
 				update Factura F
 					set
 
 						F.estado = es,
-						F.totalFactura = totalF,
                         F.fechaFactura = fechaF,
                         F.codigoCliente = codigoCli,
                         F.codigoEmpleado = codigoEmple
@@ -1138,7 +1208,7 @@ Delimiter $$
 			end $$
 delimiter ;                 
 
-call sp_EditarFactura(2,'Factura reciente', 800.50 , '12-6-2024', 1, 1);
+call sp_EditarFactura(2,'Factura reciente', '12-6-2024', 1, 1);
 call sp_ListarFactura();
 
 
@@ -1171,6 +1241,30 @@ end $$
 delimiter ;
 
 
+Delimiter $$
+
+create trigger tr_precioUnitarioA_before
+before update on DetalleFactura
+for each row
+begin
+    declare prodPrecioUnitario decimal(10,2);
+
+    /* Aqui se obtiene el valor de precioUnitario de la entidad productos y
+    se le asigna a la variable antes creada.
+    */
+    select precioUnitario
+    into prodPrecioUnitario
+    from Productos
+    where codigoProducto = new.codigoProducto;
+
+    -- Se le asigna el valor de la variable al atributo de DetalleFactura "precioUnitario"
+    set new.precioUnitario = prodPrecioUnitario;
+end $$
+
+delimiter ;
+
+
+
 
 
 -- ----------------------------- Trigger --------------------------------------------------------------------------
@@ -1199,20 +1293,44 @@ end $$
 delimiter ;
 
 
+delimiter $$
+
+create trigger tr_actualizar_Facturas_totalFacturaA_after
+after update on DetalleFactura
+for each row
+begin
+    declare total decimal(10, 2);
+
+    -- hace la sumatoria de los costoUnitario multiplicado por cantidad
+    select sum(precioUnitario * cantidad)
+    into total
+    from DetalleFactura
+    where numeroFactura = new.numeroFactura;
+
+    -- Actualiza el totalFactura de la tabla Factura asignando el total que se calculo
+    update Factura
+    set totalFactura = total
+    where numeroFactura = new.numeroFactura;
+end $$
+
+delimiter ;
+
+
+
 
 -- -----------------------------Procedimiento Almacenado---------------------------------
 -- -------- DetalleFactura
 
 -- Agregar 
 Delimiter $$
-create procedure Sp_AgregarDetalleFactura (in codigoDetalleFactura int, in precioUnitario decimal(10,2), in cantidad int, in numeroFactura int, in codigoProducto varchar(15))
+create procedure Sp_AgregarDetalleFactura (in codigoDetalleFactura int, in cantidad int, in numeroFactura int, in codigoProducto varchar(15))
 	begin 
-		insert into DetalleFactura (codigoDetalleFactura,precioUnitario,cantidad,numeroFactura,codigoProducto) values (codigoDetalleFactura,precioUnitario,cantidad,numeroFactura,codigoProducto);
+		insert into DetalleFactura (codigoDetalleFactura,cantidad,numeroFactura,codigoProducto) values (codigoDetalleFactura,cantidad,numeroFactura,codigoProducto);
 	end $$
 Delimiter ;
 
-call Sp_AgregarDetalleFactura (1, 10.20, 35, 1, 'E5');
-call Sp_AgregarDetalleFactura (2, 11.36, 42, 2, 'E6');
+call Sp_AgregarDetalleFactura (1, 35, 1, 'E5');
+call Sp_AgregarDetalleFactura (2, 42, 2, 'E6');
 
 
 
@@ -1265,12 +1383,12 @@ call sp_ListarDetalleFactura();
 
 -- editar 
 Delimiter $$
-	create procedure sp_EditarDetalleFactura(in codigoDetalleFac int, in precioUni decimal(10,2), in canti int,  in numeroFac int, in codigoProduc varchar(15))
+	create procedure sp_EditarDetalleFactura(in codigoDetalleFac int, in canti int,  in numeroFac int, in codigoProduc varchar(15))
 			begin 
 				update DetalleFactura F
 					set
 
-						F.precioUnitario = precioUni,
+						
 						F.cantidad = canti,
                         F.numeroFactura = numeroFac,
                         F.codigoProducto = codigoProduc
@@ -1280,7 +1398,7 @@ Delimiter $$
 			end $$
 delimiter ;                 
 
--- call sp_EditarDetalleFactura(2, 100.02, 30, 1, 'E5');
+
 call sp_ListarDetalleFactura();
 
 
