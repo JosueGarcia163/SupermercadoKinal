@@ -7,6 +7,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.josuegarcia.bean.Clientes;
 import org.josuegarcia.db.Conexion;
+import org.josuegarcia.reports.GenerarReportes;
 import org.josuegarcia.system.Principal;
 
 public class MenuClientesController implements Initializable {
@@ -320,6 +323,10 @@ public class MenuClientesController implements Initializable {
      //Este metodo reporte nos sirve para poder cancelar alguna actualizacion o el metodo Agregar
     public void reporte() {
         switch (tipoDeOperaciones) {
+            case NINGUNO:
+                imprimirReporte();
+                
+                break;
             case EDITAR:
                 activarControles();
                 LimpiarControles();
@@ -336,6 +343,14 @@ public class MenuClientesController implements Initializable {
         }
 
     }
+    public void imprimirReporte(){
+    Map parametros = new HashMap();
+    parametros.put("codigoCliente" , null);
+    GenerarReportes.mostrarReportes("reporteClientes.jasper", "Reporte Cliente", parametros);
+    
+    }
+    
+    
 
     // Metodo para desactivar controller
     public void desactivarControles() {

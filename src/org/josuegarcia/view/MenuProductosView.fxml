@@ -39,7 +39,7 @@
             <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="26.0" prefWidth="130.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" text="Agregar" />
             <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="26.0" prefWidth="129.0" styleClass="button1" stylesheets="@../resource/KinalExpressCSS.css" text="Eliminar" GridPane.rowIndex="1" />
             <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="151.0" style="-fx-background-color: pink;" styleClass="button3" stylesheets="@../resource/KinalExpressCSS.css" text="Editar" GridPane.rowIndex="2" />
-            <Button fx:id="btnReportes" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" styleClass="button2" stylesheets="@../resource/KinalExpressCSS.css" text="Reportes" GridPane.rowIndex="3" />
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reporte" prefHeight="26.0" prefWidth="130.0" styleClass="button2" stylesheets="@../resource/KinalExpressCSS.css" text="Reportes" GridPane.rowIndex="3" />
             <ImageView fx:id="imgAgregar" fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Agregar.png" />
