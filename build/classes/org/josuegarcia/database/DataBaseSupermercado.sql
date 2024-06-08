@@ -218,7 +218,7 @@ Delimiter $$
 			end $$
 delimiter ;                 
  
-call sp_EditarClientes(02,'owo','seeeee', 'Luna','San Marcos', '4575','harolsito79@gmail.com');
+call sp_EditarClientes(02,'owo','seeeee', 'Edonis','Europa', '666','lunita45@gmail.com');
 call sp_ListarClientes();
  
  -- -----------------------------Procedimiento Almacenado---------------------------------

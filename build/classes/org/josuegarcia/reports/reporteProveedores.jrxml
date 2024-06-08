@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProveedores" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6b3e0430-9cf8-4fdf-84c4-c03dd0a788f1">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="244"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[call sp_ListarProveedores()]]>
 	</queryString>
@@ -33,8 +33,8 @@
 	<background>
 		<band height="802" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="802" uuid="4d71d917-509a-4bd3-a1f2-b348fdcdaae1"/>
-				<imageExpression><![CDATA["C:\\Users\\informatica\\Desktop\\SuperMercado2023324\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\reporteriaProveedores.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="802" uuid="b56269f4-7543-4438-a2ab-7f7c831d94f7"/>
+				<imageExpression><![CDATA["C:\\Users\\david\\OneDrive\\Desktop\\SupermercadoGit\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\ReporteriaProveedores.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>
@@ -42,13 +42,83 @@
 		<band height="79" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="48" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="154" splitType="Stretch">
+			<textField>
+				<reportElement x="123" y="7" width="100" height="20" uuid="96c1b9e8-6d62-41bb-8737-c65bfaa9c1ee"/>
+				<textFieldExpression><![CDATA[$F{NITproveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="37" width="110" height="20" uuid="c62fe5ea-1836-4241-9208-64996c8a61fd"/>
+				<textFieldExpression><![CDATA[$F{nombreProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="71" width="117" height="20" uuid="f7ed08ff-0eb1-4ef4-9aed-d9d110c63328"/>
+				<textFieldExpression><![CDATA[$F{apellidosProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="105" width="117" height="20" uuid="ae97df77-2502-4a88-8548-71bc1796a22d"/>
+				<textFieldExpression><![CDATA[$F{direccionProveedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="7" width="78" height="20" uuid="5b1c3002-6487-45dc-8f8a-052f8151df36"/>
+				<text><![CDATA[NITproveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="105" width="100" height="20" uuid="d72625b2-9b23-41e9-9d2c-8ca7160edd67"/>
+				<text><![CDATA[direccionProveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="37" width="78" height="20" uuid="3e80091d-1730-40bc-a42f-5daa0475fbba"/>
+				<text><![CDATA[nombreProveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="71" width="100" height="20" uuid="65ef2d09-1935-4b92-bf5f-7decbbf02d5c"/>
+				<text><![CDATA[apellidosProveedor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="7" width="100" height="20" uuid="9de73ca7-6a4a-4341-ad56-de4241d90f8d"/>
+				<textFieldExpression><![CDATA[$F{razonSocial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="267" y="7" width="100" height="20" uuid="8f321ebd-2e38-4dfc-b4ed-429e2cddd961"/>
+				<text><![CDATA[razonSocial]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="37" width="100" height="20" uuid="d9d9f3ff-46b2-4317-95ef-bbcef5e7d934"/>
+				<textFieldExpression><![CDATA[$F{paginaWeb}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="267" y="37" width="100" height="20" uuid="9ed3ea7e-da19-4fdd-9341-09bd2cedf4e5"/>
+				<text><![CDATA[paginaWeb]]></text>
+			</staticText>
+			<line>
+				<reportElement x="252" y="0" width="1" height="139" uuid="e244d1e4-b5a2-45cb-907f-60ecac21c050"/>
+			</line>
+			<line>
+				<reportElement x="104" y="0" width="1" height="139" uuid="469aa217-6f0f-41b5-9202-bf04e10f758a"/>
+			</line>
+			<line>
+				<reportElement x="498" y="0" width="1" height="139" uuid="8259d324-9d3d-4dfc-9617-69d8e6caa5f8"/>
+			</line>
+			<line>
+				<reportElement x="4" y="136" width="495" height="1" uuid="4c79d643-f7e9-41ad-bb40-8d5fc5aed5dd"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="499" height="1" uuid="dc38b1d8-f106-4b1f-9c64-fcdcd9bc88e8"/>
+			</line>
+			<line>
+				<reportElement x="1" y="1" width="1" height="135" uuid="bfaa9d21-f9e1-4ae3-b0ec-0a41cb57d36b"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="498" height="1" uuid="87e10773-e0b4-4cc2-a937-368cfbb03fbe"/>
+			</line>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

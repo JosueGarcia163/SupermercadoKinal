@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProducto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52ca312b-7ccf-4051-94fa-52ae077f8610">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="813"/>
 	<queryString>
 		<![CDATA[call sp_ListarProductos()]]>
 	</queryString>
@@ -33,8 +33,8 @@
 	<background>
 		<band height="802" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="802" uuid="51317d90-f00f-410c-8d39-aeb991a4f8c6"/>
-				<imageExpression><![CDATA["C:\\Users\\informatica\\Desktop\\SuperMercado2023324\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\ReporteriaProducto.png"]]></imageExpression>
+				<reportElement x="1" y="0" width="555" height="802" uuid="9af1aff5-d1e9-4b10-a4cb-3aa8c7872343"/>
+				<imageExpression><![CDATA["C:\\Users\\david\\OneDrive\\Desktop\\SupermercadoGit\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\ReporteriaProducto.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>
