@@ -7,6 +7,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +28,7 @@ import org.josuegarcia.bean.Clientes;
 import org.josuegarcia.bean.Empleados;
 import org.josuegarcia.bean.Facturas;
 import org.josuegarcia.db.Conexion;
+import org.josuegarcia.reports.GenerarReportes;
 import org.josuegarcia.system.Principal;
 
 public class MenuFacturasController implements Initializable {
@@ -429,6 +432,9 @@ public class MenuFacturasController implements Initializable {
     //Este metodo reporte nos sirve para poder cancelar alguna actualizacion o el metodo Agregar
     public void reporte() {
         switch (tipoDeOperaciones) {
+             case NINGUNO:
+                imprimirReporte();
+            
             case EDITAR:
                 activarControles();
                 LimpiarControles();
@@ -445,6 +451,15 @@ public class MenuFacturasController implements Initializable {
         }
 
     }
+    
+    public void imprimirReporte(){
+    Map parametros = new HashMap();
+    int factID = ((Facturas)tbFacturas.getSelectionModel().getSelectedItem()).getNumeroFactura();
+    parametros.put("factID" , factID);
+    GenerarReportes.mostrarReportes("reporteFacturas.jasper", "Reporte Facturas", parametros);
+    
+    }
+    
 
     // Metodo para desactivar controller
     public void desactivarControles() {

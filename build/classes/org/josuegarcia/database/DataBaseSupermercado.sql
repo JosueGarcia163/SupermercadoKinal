@@ -1404,7 +1404,11 @@ call sp_ListarDetalleFactura();
 
 call sp_ListarFactura();
 
-
+select * from DetalleFactura
+	join Factura on DetalleFactura.numeroFactura = factura.numeroFactura
+    join Clientes on Factura.codigoCliente = Clientes.codigoCliente
+    join Productos on DetalleFactura.codigoProducto = productos.codigoProducto
+    where Factura.numeroFactura = 1;
 
     
 

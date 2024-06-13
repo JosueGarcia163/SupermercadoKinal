@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteFacturas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="35b36563-40f6-42be-bf1f-0e7db5bccb57">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="782"/>
+	<parameter name="factID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from DetalleFactura
+	join Factura on DetalleFactura.numeroFactura = factura.numeroFactura
+    join Clientes on Factura.codigoCliente = Clientes.codigoCliente
+    join Productos on DetalleFactura.codigoProducto = productos.codigoProducto
+    where Factura.numeroFactura = $P{factID}]]>
+	</queryString>
+	<field name="codigoDetalleFactura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precioUnitario" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroFactura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoProducto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalFactura" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaFactura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoCliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoEmpleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NITcliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidoCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccionCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefonoCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="correoCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcionProducto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precioDocena" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precioMayor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="imagenProducto" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="existencia" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoTipoProducto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoProveedor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="802" uuid="8cd0057c-f703-46aa-ba7e-71bfbc6ff047"/>
+				<imageExpression><![CDATA["C:\\Users\\informatica\\Desktop\\SuperMercado2023324\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\reporteFacturas.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="207" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="75" width="538" height="20" uuid="fee8d5a7-3717-4a91-b660-1e0a5b307b1f"/>
+				<textFieldExpression><![CDATA["Nombre Cliente: " + $F{nombreCliente} + " Apellido: " + $F{apellidoCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="166" width="246" height="20" uuid="38403a86-18fb-40c5-8a54-1e630736019a"/>
+				<textFieldExpression><![CDATA["correo de cliente: " + $F{correoCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="106" width="212" height="20" uuid="5b18baf2-6070-4580-9cde-a6558a2e879f"/>
+				<textFieldExpression><![CDATA["Precio de la docena: " + $F{precioDocena}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="106" width="138" height="20" uuid="8799e71d-02c8-447a-82cb-3583e79a14c9"/>
+				<textFieldExpression><![CDATA["Existencia: " + $F{existencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="136" width="168" height="20" uuid="11e0aa81-44fa-406e-85c7-5de77fc1ece4"/>
+				<textFieldExpression><![CDATA["direccion: " + $F{direccionCliente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="95" width="555" height="1" uuid="44e2ee67-50ce-4dae-b009-d08eba10c14d"/>
+			</line>
+			<line>
+				<reportElement x="0" y="135" width="555" height="1" uuid="c1282c57-1f25-40ff-a6b5-89eeb9b29828"/>
+			</line>
+			<line>
+				<reportElement x="0" y="165" width="555" height="1" uuid="a63783d1-03ed-45c4-8f89-067fc67f8661"/>
+			</line>
+			<line>
+				<reportElement x="0" y="186" width="555" height="1" uuid="37e030b7-3d28-4747-b78e-fe8df6b3309a"/>
+			</line>
+			<line>
+				<reportElement x="0" y="74" width="555" height="1" uuid="ce1bf632-47b2-4733-8a25-c48ecf4f00b2"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="130" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="0" width="469" height="32" uuid="f3521540-c2ac-4c8b-996a-fa5da1f44645"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gracias por Comprar en SupermaMart, Lo esperamos pronto !]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="82" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="54" splitType="Stretch"/>
+	</summary>
+</jasperReport>
