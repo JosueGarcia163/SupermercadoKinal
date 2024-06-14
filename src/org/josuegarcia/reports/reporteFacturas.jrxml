@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteFacturas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="35b36563-40f6-42be-bf1f-0e7db5bccb57">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="782"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="factID" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -82,11 +82,20 @@
 	<field name="codigoProveedor" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<variable name="sinIVA" class="java.lang.Float">
+		<variableExpression><![CDATA[$F{precioUnitario}/1.12]]></variableExpression>
+	</variable>
+	<variable name="IVA" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{precioUnitario}-$V{sinIVA}]]></variableExpression>
+	</variable>
+	<variable name="subTotalProducto" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{sinIVA}+$V{IVA}]]></variableExpression>
+	</variable>
 	<background>
 		<band height="802" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="802" uuid="8cd0057c-f703-46aa-ba7e-71bfbc6ff047"/>
-				<imageExpression><![CDATA["C:\\Users\\informatica\\Desktop\\SuperMercado2023324\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\reporteFacturas.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="802" uuid="0c1d1601-a9bd-4ed3-b19a-3c7a5ac812c6"/>
+				<imageExpression><![CDATA["C:\\Users\\david\\OneDrive\\Desktop\\SupermercadoGit\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\reporteFacturas.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>
@@ -108,7 +117,7 @@
 				<textFieldExpression><![CDATA["Precio de la docena: " + $F{precioDocena}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="268" y="106" width="138" height="20" uuid="8799e71d-02c8-447a-82cb-3583e79a14c9"/>
+				<reportElement x="268" y="106" width="171" height="20" uuid="8799e71d-02c8-447a-82cb-3583e79a14c9"/>
 				<textFieldExpression><![CDATA["Existencia: " + $F{existencia}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -130,29 +139,54 @@
 			<line>
 				<reportElement x="0" y="74" width="555" height="1" uuid="ce1bf632-47b2-4733-8a25-c48ecf4f00b2"/>
 			</line>
+			<textField>
+				<reportElement x="268" y="145" width="171" height="20" uuid="c9ee2740-e15d-42e6-b2a5-27f58eacd4de"/>
+				<textFieldExpression><![CDATA["cantidad: " + $F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="167" width="235" height="20" uuid="dcd7bd8a-c3de-462b-838f-34d5c6958b2b"/>
+				<textFieldExpression><![CDATA["precio por unidad: " + "Q."+ $F{precioUnitario}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="130" splitType="Stretch"/>
+		<band height="41" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="25" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
-			<staticText>
-				<reportElement x="12" y="0" width="469" height="32" uuid="f3521540-c2ac-4c8b-996a-fa5da1f44645"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Gracias por Comprar en SupermaMart, Lo esperamos pronto !]]></text>
-			</staticText>
+		<band height="273" splitType="Stretch">
+			<textField>
+				<reportElement x="283" y="0" width="245" height="20" uuid="07637e06-c383-4418-879c-20abf71b58b8"/>
+				<textFieldExpression><![CDATA["Precio sin Iva: " + "Q." + $V{sinIVA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="20" width="245" height="20" uuid="56528302-5d22-4e99-9283-a613c54bd643"/>
+				<textFieldExpression><![CDATA["IVA: " + "Q."+ $V{IVA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="40" width="272" height="20" uuid="7a5a01a7-500b-4dd2-b391-0966a196a381"/>
+				<textFieldExpression><![CDATA["SubTotal Producto: " + $F{descripcionProducto} +  " Q." + $V{subTotalProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="60" width="245" height="20" uuid="2885ffb0-63d0-4047-9383-64b6d1b8e523"/>
+				<textFieldExpression><![CDATA["Total a pagar: " + "Q." + $F{totalFactura}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="82" splitType="Stretch"/>
+		<band height="137" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="260" height="31" uuid="f3521540-c2ac-4c8b-996a-fa5da1f44645"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gracias por Comprar en SupermaMart                   Lo esperamos pronto !]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
-		<band height="54" splitType="Stretch"/>
+		<band height="75" splitType="Stretch"/>
 	</summary>
 </jasperReport>

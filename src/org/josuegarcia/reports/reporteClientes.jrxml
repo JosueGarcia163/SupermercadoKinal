@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteClientes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="615a7d25-a502-4ae9-a074-d4c39624b276">
 	<property name="ireport.zoom" value="1.100000000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="739"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[call sp_ListarClientes]]>
 	</queryString>
@@ -72,15 +72,15 @@
 			</textField>
 			<staticText>
 				<reportElement x="0" y="116" width="79" height="20" uuid="610de0c6-f025-4016-ab33-bff70c6e7789"/>
-				<text><![CDATA[correoCliente]]></text>
+				<text><![CDATA[correoCliente:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="73" width="88" height="20" uuid="3a4e77ce-0c11-4136-8b34-cbbcd9222381"/>
-				<text><![CDATA[nombreCliente]]></text>
+				<text><![CDATA[nombreCliente:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="219" y="73" width="100" height="20" uuid="10c5740e-c915-4455-a009-575d73fba558"/>
-				<text><![CDATA[apellidoCliente]]></text>
+				<text><![CDATA[apellidoCliente:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="219" y="116" width="100" height="20" uuid="1f7b10a9-5852-47c6-b554-26137ddebeba"/>
@@ -88,7 +88,7 @@
 			</staticText>
 			<staticText>
 				<reportElement x="100" y="43" width="100" height="20" uuid="9257f0ba-89d5-4234-b569-8299df8ecfcc"/>
-				<text><![CDATA[direccionCliente]]></text>
+				<text><![CDATA[direccionCliente:]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="42" width="555" height="1" uuid="63b6f0e8-622c-466f-b2e2-20d8687da6c9"/>

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProducto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52ca312b-7ccf-4051-94fa-52ae077f8610">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="28"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[call sp_ListarProductos()]]>
 	</queryString>
@@ -33,8 +33,8 @@
 	<background>
 		<band height="802" splitType="Stretch">
 			<image>
-				<reportElement x="1" y="0" width="554" height="802" uuid="c430814f-7aef-49aa-8aa2-1d990e2d253a"/>
-				<imageExpression><![CDATA["C:\\Users\\informatica\\Desktop\\SuperMercado2023324\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\ReporteriaProducto.png"]]></imageExpression>
+				<reportElement x="1" y="0" width="554" height="802" uuid="225a0c9f-d675-4704-a4f2-8b28200d841a"/>
+				<imageExpression><![CDATA["C:\\Users\\david\\OneDrive\\Desktop\\SupermercadoGit\\SupermercadoKinal\\src\\org\\josuegarcia\\images\\ReporteriaProducto.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>
@@ -55,7 +55,7 @@
 			</textField>
 			<staticText>
 				<reportElement x="0" y="66" width="84" height="20" uuid="761be4bd-3a9c-4984-84d3-48bbe6e474ff"/>
-				<text><![CDATA[codigo Producto]]></text>
+				<text><![CDATA[codigo Producto:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="344" y="66" width="100" height="20" uuid="324316c7-5e10-436f-8729-6c7a9d4132d6"/>
@@ -63,7 +63,7 @@
 			</textField>
 			<staticText>
 				<reportElement x="224" y="66" width="100" height="20" uuid="65613b8a-016a-46ff-ab17-7050147eb1a9"/>
-				<text><![CDATA[precioUnitario]]></text>
+				<text><![CDATA[precioUnitario:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="100" y="99" width="100" height="20" uuid="e421d2ab-505d-44c6-805d-6c5ca6917a77"/>
@@ -74,7 +74,7 @@
 				<textElement>
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[precioDocena]]></text>
+				<text><![CDATA[precioDocena:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="100" y="130" width="100" height="20" uuid="3e32a7cb-6dd5-4dd4-9365-39b5433b57c6"/>
@@ -82,7 +82,7 @@
 			</textField>
 			<staticText>
 				<reportElement x="0" y="130" width="84" height="20" uuid="4a9c7a8e-f352-4e7a-ab65-0c8599032ade"/>
-				<text><![CDATA[precioMayor]]></text>
+				<text><![CDATA[precioMayor:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="344" y="99" width="100" height="20" uuid="767d8d7d-9dd3-409b-9142-761b508e5e74"/>
@@ -90,7 +90,7 @@
 			</textField>
 			<staticText>
 				<reportElement x="224" y="99" width="100" height="20" uuid="ee42aa05-879d-45fe-95ae-dac3f263ade9"/>
-				<text><![CDATA[existencia]]></text>
+				<text><![CDATA[existencia:]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="37" width="555" height="1" uuid="0cc8c0dd-e207-49dd-abcb-cbecb2384db9"/>
